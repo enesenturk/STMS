@@ -1,0 +1,12 @@
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\bin\Debug\net7.0\NS.STMS.Settings.deps.json
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\bin\Debug\net7.0\NS.STMS.Settings.dll
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\bin\Debug\net7.0\NS.STMS.Settings.pdb
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.csproj.AssemblyReference.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.AssemblyInfoInputs.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.AssemblyInfo.cs
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.csproj.CoreCompileInputs.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.dll
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\refint\NS.STMS.Settings.dll
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\NS.STMS.Settings.pdb
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Settings\obj\Debug\net7.0\ref\NS.STMS.Settings.dll

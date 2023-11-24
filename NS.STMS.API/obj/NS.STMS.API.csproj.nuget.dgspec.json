@@ -1,0 +1,574 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.API\\NS.STMS.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.API\\NS.STMS.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.API\\NS.STMS.API.csproj",
+        "projectName": "NS.STMS.API",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.API\\NS.STMS.API.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\NS.STMS.Business.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\NS.STMS.Business.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\NS.STMS.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\NS.STMS.Business.csproj",
+        "projectName": "NS.STMS.Business",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\NS.STMS.Business.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\NS.STMS.DAL.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\NS.STMS.DAL.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj",
+        "projectName": "NS.STMS.Core",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "LinqKit.Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "PostSharp": {
+              "target": "Package",
+              "version": "[6.10.6, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.3.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\NS.STMS.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\NS.STMS.DAL.csproj",
+        "projectName": "NS.STMS.DAL",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\NS.STMS.DAL.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj",
+        "projectName": "NS.STMS.DTO",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\NS.STMS.DTO.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.DTO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj",
+        "projectName": "NS.STMS.Entity",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\NS.STMS.Entity.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Core\\NS.STMS.Core.csproj"
+              },
+              "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj": {
+                "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.6, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj",
+        "projectName": "NS.STMS.Settings",
+        "projectPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\NS.STMS.Settings.csproj",
+        "packagesPath": "C:\\Users\\enese\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enese\\Desktop\\NS Projects\\NS.STMS\\NS.STMS.Settings\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\enese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

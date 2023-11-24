@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NS.STMS.DAL\NS.STMS.DAL.csproj" />
+    <ProjectReference Include="..\NS.STMS.DTO\NS.STMS.DTO.csproj" />
+    <ProjectReference Include="..\NS.STMS.Entity\NS.STMS.Entity.csproj" />
+    <ProjectReference Include="..\NS.STMS.Settings\NS.STMS.Settings.csproj" />
+  </ItemGroup>
+
+</Project>

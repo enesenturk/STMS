@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "NS.STMS.DTO/1.0.0": {
+        "runtime": {
+          "NS.STMS.DTO.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NS.STMS.DTO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

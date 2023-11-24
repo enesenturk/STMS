@@ -1,0 +1,15 @@
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\bin\Debug\net7.0\NS.STMS.Core.pssym
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\bin\Debug\net7.0\NS.STMS.Core.pspdb
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\bin\Debug\net7.0\NS.STMS.Core.deps.json
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\bin\Debug\net7.0\NS.STMS.Core.dll
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\bin\Debug\net7.0\NS.STMS.Core.pdb
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.csproj.AssemblyReference.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.AssemblyInfoInputs.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.AssemblyInfo.cs
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.csproj.CoreCompileInputs.cache
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\PostSharp\touch
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\PostSharp\AdditionalBuildDependencies.txt
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.dll
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\NS.STMS.Core.pdb
+C:\Users\enese\Desktop\NS Projects\NS.STMS\NS.STMS.Core\obj\Debug\net7.0\PostSharp\postsharp.app.config
