@@ -8,7 +8,7 @@ namespace NS.STMS.Core.DataAccess
 
 		#region Create
 
-		TEntity Add(TEntity entity);
+		TEntity Add(TEntity entity, int createdBy);
 
 		List<TEntity> AddRange(List<TEntity> entities);
 
@@ -16,9 +16,12 @@ namespace NS.STMS.Core.DataAccess
 
 		#region Read
 
-		List<TEntity> GetList<T>(Expression<Func<TEntity, T>> OrderBy, Expression<Func<TEntity, bool>> filter = null);
+		List<TEntity> GetList<T>(
+			Expression<Func<TEntity, T>> OrderBy,
+			Expression<Func<TEntity, bool>> filter = null);
 
-		List<TEntity> GetListWithProperties<K>(Expression<Func<TEntity, K>> OrderBy,
+		List<TEntity> GetListWithProperties<K>(
+			Expression<Func<TEntity, K>> OrderBy,
 			string[] navProperties,
 			Expression<Func<TEntity, bool>> filter = null,
 			bool orderByDesc = false);

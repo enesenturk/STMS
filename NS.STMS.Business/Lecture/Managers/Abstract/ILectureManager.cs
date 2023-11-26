@@ -11,7 +11,8 @@ namespace NS.STMS.Business.Lecture.Managers.Abstract
 
 		#region Read
 
-		List<JSonDto> GetLectures(int gradeId);
+		JSonDto GetLecture(int lectureId);
+		List<JSonDto> GetLectures();
 
 		#endregion
 

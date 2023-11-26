@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NS.STMS.Core.Extentions;
+using NS.STMS.Core.Helpers;
 using System.Linq.Expressions;
 
 namespace NS.STMS.Core.DataAccess.EntityFramework
@@ -12,8 +13,11 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		#region Create
 
-		public TEntity Add(TEntity entity)
+		public TEntity Add(TEntity entity, int createdBy)
 		{
+			entity.created_at = DateTimeHelper.GetNow();
+			entity.created_by = createdBy;
+
 			using (var context = new TContext())
 			{
 				var addedEntity = context.Entry(entity);
@@ -51,7 +55,9 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		#region Read
 
-		public List<TEntity> GetList<T>(Expression<Func<TEntity, T>> OrderBy, Expression<Func<TEntity, bool>> filter = null)
+		public List<TEntity> GetList<T>(
+			Expression<Func<TEntity, T>> OrderBy,
+			Expression<Func<TEntity, bool>> filter = null)
 		{
 			using (var context = new TContext())
 			{
@@ -61,14 +67,15 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public List<TEntity> GetListWithProperties<K>(Expression<Func<TEntity, K>> OrderBy,
+		public List<TEntity> GetListWithProperties<K>(
+			Expression<Func<TEntity, K>> OrderBy,
 			string[] navProperties,
 			Expression<Func<TEntity, bool>> filter = null,
 			bool orderByDesc = false)
 		{
 			using (var context = new TContext())
 			{
-				var query = context.Set<TEntity>().IncludeProperties(navProperties);
+				var query = context.Set<TEntity>().DeletedFilter().IncludeProperties(navProperties);
 
 				if (filter != null)
 					query = query.Where(filter);
@@ -105,7 +112,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		{
 			using (var context = new TContext())
 			{
-				return context.Set<TEntity>().FirstOrDefault(filter);
+				return context.Set<TEntity>().DeletedFilter().FirstOrDefault(filter);
 			}
 		}
 

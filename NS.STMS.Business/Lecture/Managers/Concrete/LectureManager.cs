@@ -21,6 +21,7 @@ namespace NS.STMS.Business.Lecture.Managers.Concrete
 			)
 		{
 			_lectureDal = lectureDal;
+
 			_mapper = mapper;
 		}
 
@@ -32,12 +33,18 @@ namespace NS.STMS.Business.Lecture.Managers.Concrete
 
 		#region Read
 
-		public List<JSonDto> GetLectures(int gradeId)
+		public JSonDto GetLecture(int lectureId)
+		{
+			return _mapper.Map<JSonDto>(
+				_lectureDal.Get(x => x.id == lectureId)
+				);
+		}
+
+		public List<JSonDto> GetLectures()
 		{
 			return _mapper.Map<List<JSonDto>>(
 				_lectureDal.GetList(
-					x => x.name,
-					x => x.t_grade_id == gradeId
+					x => x.name
 					)
 				);
 		}

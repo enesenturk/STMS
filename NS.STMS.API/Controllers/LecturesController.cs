@@ -5,28 +5,26 @@ using NS.STMS.DTO;
 
 namespace NS.STMS.API.Controllers
 {
+	[Route("api/[controller]")]
 	[ApiController]
-	public class LectureController : ControllerBase
+	public class LecturesController : ControllerBase
 	{
 
 		#region CTOR
 
-		private readonly ILogger<LectureController> _logger;
+		private readonly ILogger<LecturesController> _logger;
 
 		private readonly ILectureManager _lectureManager;
-		private readonly IGradeManager _gradeManager;
 
-		public LectureController(
-			ILogger<LectureController> logger,
+		public LecturesController(
+			ILogger<LecturesController> logger,
 
-			ILectureManager lectureManager,
-			IGradeManager gradeManager
+			ILectureManager lectureManager
 			)
 		{
 			_logger = logger;
 
 			_lectureManager = lectureManager;
-			_gradeManager = gradeManager;
 		}
 
 		#endregion
@@ -38,10 +36,9 @@ namespace NS.STMS.API.Controllers
 		#region Read
 
 		[HttpGet]
-		[Route("/api/grades")]
-		public OkObjectResult Grades()
+		public OkObjectResult Lectures()
 		{
-			List<JSonDto> response = _gradeManager.GetGrades();
+			List<JSonDto> response = _lectureManager.GetLectures();
 
 			return Ok(new BaseResponseModel
 			{
@@ -51,10 +48,10 @@ namespace NS.STMS.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("/api/lectures/{gradeId}")]
-		public OkObjectResult Lectures(int gradeId)
+		[Route("{lectureId}")]
+		public OkObjectResult Lectures(int lectureId)
 		{
-			List<JSonDto> response = _lectureManager.GetLectures(gradeId);
+			JSonDto response = _lectureManager.GetLecture(lectureId);
 
 			return Ok(new BaseResponseModel
 			{

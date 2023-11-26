@@ -7,17 +7,17 @@ using NS.STMS.DTO.SystemTable.DifficultyLevel;
 namespace NS.STMS.API.Controllers
 {
 	[ApiController]
-	public class SystemTableController : ControllerBase
+	public class SystemTablesController : ControllerBase
 	{
 
 		#region CTOR
 
-		private readonly ILogger<SystemTableController> _logger;
+		private readonly ILogger<SystemTablesController> _logger;
 
 		private readonly ISystemTableManager _systemTableManager;
 
-		public SystemTableController(
-			ILogger<SystemTableController> logger,
+		public SystemTablesController(
+			ILogger<SystemTablesController> logger,
 			ISystemTableManager systemTableManager
 			)
 		{
@@ -35,7 +35,7 @@ namespace NS.STMS.API.Controllers
 		#region Read
 
 		[HttpGet]
-		[Route("/api/difficultyLevels")]
+		[Route("/api/DifficultyLevels")]
 		public OkObjectResult DifficultyLevels()
 		{
 			List<DifficultyLevelResponseDto> response = _systemTableManager.GetDifficultyLevels();
@@ -48,7 +48,7 @@ namespace NS.STMS.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("/api/cities")]
+		[Route("/api/Cities")]
 		public OkObjectResult Cities()
 		{
 			List<JSonDto> response = _systemTableManager.GetCities();
@@ -61,7 +61,7 @@ namespace NS.STMS.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("/api/counties/{cityId}")]
+		[Route("/api/Counties/{cityId}")]
 		public OkObjectResult Counties(int cityId)
 		{
 			List<JSonDto> response = _systemTableManager.GetCounties(cityId);

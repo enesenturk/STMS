@@ -21,6 +21,7 @@ namespace NS.STMS.API.Extentions
 			#region Lecture
 
 			services.AddSingleton<IGradeDal, EfGradeDal>();
+			services.AddSingleton<IGradeLectureDal, EfGradeLectureDal>();
 			services.AddSingleton<ILectureDal, EfLectureDal>();
 
 			#endregion

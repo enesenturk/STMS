@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NS.STMS.Settings;
 
 namespace NS.STMS.Entity.Context;
@@ -9,6 +7,7 @@ public partial class ns_stmsContext : DbContext
 {
 	public ns_stmsContext()
 	{
+		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 	}
 
 	public ns_stmsContext(DbContextOptions<ns_stmsContext> options)

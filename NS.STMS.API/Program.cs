@@ -1,7 +1,9 @@
 using NS.STMS.API.Converters.CustomJSonConverters;
 using NS.STMS.API.Extentions;
+using NS.STMS.API.Filters;
 using NS.STMS.API.Middlewares;
 using NS.STMS.Settings;
+using PostSharp.Extensibility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,12 @@ builder.Services.AddControllers().AddJsonOptions(opts =>
 	opts.JsonSerializerOptions.Converters.Add(new decimalJSonConverter());
 	opts.JsonSerializerOptions.Converters.Add(new doubleJSonConverter());
 	opts.JsonSerializerOptions.Converters.Add(new dateTimeJSonConverter());
+});
+
+builder.Services.AddMvc(options =>
+{
+	//options.Filters.Add(typeof(TrackExecution));
+	options.Filters.Add(typeof(ExceptionHandler));
 });
 
 builder.Services.AddCors(options =>
