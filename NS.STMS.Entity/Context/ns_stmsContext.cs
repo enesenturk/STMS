@@ -26,6 +26,8 @@ public partial class ns_stmsContext : DbContext
 
 	public virtual DbSet<t_grade> t_grades { get; set; }
 
+	public virtual DbSet<t_grade_lecture> t_grade_lectures { get; set; }
+
 	public virtual DbSet<t_lecture> t_lectures { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -113,6 +115,26 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 		});
 
+		modelBuilder.Entity<t_grade_lecture>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("t_grade_lecture_pkey");
+
+			entity.ToTable("t_grade_lecture");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+
+			entity.HasOne(d => d.t_grade).WithMany(p => p.t_grade_lectures)
+				.HasForeignKey(d => d.t_grade_id)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_grade_lecture_t_grade_id_fkey");
+
+			entity.HasOne(d => d.t_lecture).WithMany(p => p.t_grade_lectures)
+				.HasForeignKey(d => d.t_lecture_id)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_grade_lecture_t_lecture_id_fkey");
+		});
+
 		modelBuilder.Entity<t_lecture>(entity =>
 		{
 			entity.HasKey(e => e.id).HasName("t_lecture_pkey");
@@ -124,16 +146,10 @@ public partial class ns_stmsContext : DbContext
 				.IsRequired()
 				.HasMaxLength(100);
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
-
-			entity.HasOne(d => d.t_grade).WithMany(p => p.t_lectures)
-				.HasForeignKey(d => d.t_grade_id)
-				.OnDelete(DeleteBehavior.ClientSetNull)
-				.HasConstraintName("t_lecture_t_grade_id_fkey");
 		});
 
 		OnModelCreatingPartial(modelBuilder);
 	}
 
 	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
 }

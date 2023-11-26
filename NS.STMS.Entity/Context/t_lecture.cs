@@ -4,9 +4,9 @@ namespace NS.STMS.Entity.Context;
 
 public partial class t_lecture : IEntity
 {
-	public int t_grade_id { get; set; }
+	public int id { get; set; }
 
 	public string name { get; set; }
 
-	public virtual t_grade t_grade { get; set; }
+	public virtual ICollection<t_grade_lecture> t_grade_lectures { get; set; } = new List<t_grade_lecture>();
 }
