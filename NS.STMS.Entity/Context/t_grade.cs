@@ -4,8 +4,6 @@ namespace NS.STMS.Entity.Context;
 
 public partial class t_grade : IEntity
 {
-	public int id { get; set; }
-
 	public string name { get; set; }
 
 
