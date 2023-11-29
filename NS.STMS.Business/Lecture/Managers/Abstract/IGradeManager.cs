@@ -14,6 +14,7 @@ namespace NS.STMS.Business.Lecture.Managers.Abstract
 
 		#region Read
 
+		List<t_grade_lecture> GetGradeLectures();
 		List<JSonDto> GetGradeLectures(int gradeId);
 		List<JSonDto> GetGrades();
 

@@ -1,8 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LinqKit;
+using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
 using NS.STMS.API.Models.GradeModels;
 using NS.STMS.Business.Lecture.Managers.Abstract;
+using NS.STMS.Business.Lecture.Managers.Concrete;
 using NS.STMS.DTO;
+using NS.STMS.DTO.GradeLecture;
+using NS.STMS.Entity.Context;
+using System.Collections.Generic;
 
 namespace NS.STMS.API.Controllers
 {
@@ -14,10 +19,15 @@ namespace NS.STMS.API.Controllers
 		#region CTOR
 
 		private readonly IGradeManager _gradeManager;
+		private readonly ILectureManager _lectureManager;
 
-		public GradeLecturesController(IGradeManager gradeManager)
+		public GradeLecturesController(
+			IGradeManager gradeManager,
+			ILectureManager lectureManager
+			)
 		{
 			_gradeManager = gradeManager;
+			_lectureManager = lectureManager;
 		}
 
 		#endregion
@@ -38,6 +48,34 @@ namespace NS.STMS.API.Controllers
 		#endregion
 
 		#region Read
+
+		[HttpGet]
+		public OkObjectResult GradeLectures()
+		{
+			List<JSonDto> lectures = _lectureManager.GetLectures();
+			List<JSonDto> grades = _gradeManager.GetGrades();
+			List<t_grade_lecture> gradeLectures = _gradeManager.GetGradeLectures();
+
+			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
+
+			response.Grades = grades.Select(x => x.Value).ToList();
+			response.Lectures = lectures.Select(x => x.Value).ToList();
+
+			gradeLectures.ForEach(x =>
+			{
+				response.GradeLectures.Add(new GradeLectureResponseDto
+				{
+					Grade = x.t_grade.name,
+					Lecture = x.t_lecture.name
+				});
+			});
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = response
+			});
+		}
 
 		[HttpGet]
 		[Route("{gradeId}")]

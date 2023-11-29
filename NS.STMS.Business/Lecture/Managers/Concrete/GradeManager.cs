@@ -2,6 +2,7 @@
 using NS.STMS.Business.Lecture.Managers.Abstract;
 using NS.STMS.DAL.Abstract.Lectures;
 using NS.STMS.DTO;
+using NS.STMS.DTO.GradeLecture;
 using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Lecture.Managers.Concrete
@@ -47,6 +48,14 @@ namespace NS.STMS.Business.Lecture.Managers.Concrete
 		#endregion
 
 		#region Read
+
+		public List<t_grade_lecture> GetGradeLectures()
+		{
+			return _gradeLectureDal.GetListWithProperties(
+				x => x.t_grade_id,
+				new string[] { "t_grade", "t_lecture" }
+				);
+		}
 
 		public List<JSonDto> GetGradeLectures(int gradeId)
 		{
