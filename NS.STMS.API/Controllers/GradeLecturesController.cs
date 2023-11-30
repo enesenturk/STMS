@@ -1,104 +1,101 @@
-﻿using LinqKit;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
 using NS.STMS.API.Models.GradeModels;
 using NS.STMS.Business.Lecture.Managers.Abstract;
-using NS.STMS.Business.Lecture.Managers.Concrete;
 using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLecture;
 using NS.STMS.Entity.Context;
-using System.Collections.Generic;
 
 namespace NS.STMS.API.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class GradeLecturesController : ControllerBase
-	{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class GradeLecturesController : ControllerBase
+    {
 
-		#region CTOR
+        #region CTOR
 
-		private readonly IGradeManager _gradeManager;
-		private readonly ILectureManager _lectureManager;
+        private readonly IGradeManager _gradeManager;
+        private readonly ILectureManager _lectureManager;
 
-		public GradeLecturesController(
-			IGradeManager gradeManager,
-			ILectureManager lectureManager
-			)
-		{
-			_gradeManager = gradeManager;
-			_lectureManager = lectureManager;
-		}
+        public GradeLecturesController(
+            IGradeManager gradeManager,
+            ILectureManager lectureManager
+            )
+        {
+            _gradeManager = gradeManager;
+            _lectureManager = lectureManager;
+        }
 
-		#endregion
+        #endregion
 
-		#region Create
+        #region Create
 
-		[HttpPost]
-		public OkObjectResult GradeLecture(GradeLectureRequestModel model)
-		{
-			_gradeManager.CreateGradeLecture(model.GradeId, model.LectureId);
+        [HttpPost]
+        public OkObjectResult GradeLecture(GradeLectureRequestModel model)
+        {
+            _gradeManager.CreateGradeLecture(model.GradeId, model.LectureId);
 
-			return Ok(new BaseResponseModel
-			{
-				Type = "S"
-			});
-		}
+            return Ok(new BaseResponseModel
+            {
+                Type = "S"
+            });
+        }
 
-		#endregion
+        #endregion
 
-		#region Read
+        #region Read
 
-		[HttpGet]
-		public OkObjectResult GradeLectures()
-		{
-			List<JSonDto> lectures = _lectureManager.GetLectures();
-			List<JSonDto> grades = _gradeManager.GetGrades();
-			List<t_grade_lecture> gradeLectures = _gradeManager.GetGradeLectures();
+        [HttpGet]
+        public OkObjectResult GradeLectures()
+        {
+            List<JSonDto> lectures = _lectureManager.GetLectures();
+            List<JSonDto> grades = _gradeManager.GetGrades();
+            List<t_grade_lecture> gradeLectures = _gradeManager.GetGradeLectures();
 
-			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
+            GradeLecturesResponseDto response = new GradeLecturesResponseDto();
 
-			response.Grades = grades.Select(x => x.Value).ToList();
-			response.Lectures = lectures.Select(x => x.Value).ToList();
+            response.Grades = grades.Select(x => x.Value).ToList();
+            response.Lectures = lectures.Select(x => x.Value).ToList();
 
-			gradeLectures.ForEach(x =>
-			{
-				response.GradeLectures.Add(new GradeLectureResponseDto
-				{
-					Grade = x.t_grade.name,
-					Lecture = x.t_lecture.name
-				});
-			});
+            gradeLectures.ForEach(x =>
+            {
+                response.GradeLectures.Add(new GradeLectureResponseDto
+                {
+                    Grade = x.t_grade.name,
+                    Lecture = x.t_lecture.name
+                });
+            });
 
-			return Ok(new BaseResponseModel
-			{
-				Type = "S",
-				ResponseModel = response
-			});
-		}
+            return Ok(new BaseResponseModel
+            {
+                Type = "S",
+                ResponseModel = response
+            });
+        }
 
-		[HttpGet]
-		[Route("{gradeId}")]
-		public OkObjectResult GradeLectures(int gradeId)
-		{
-			List<JSonDto> response = _gradeManager.GetGradeLectures(gradeId);
+        [HttpGet]
+        [Route("{gradeId}")]
+        public OkObjectResult GradeLectures(int gradeId)
+        {
+            List<JSonDto> response = _gradeManager.GetGradeLectures(gradeId);
 
-			return Ok(new BaseResponseModel
-			{
-				Type = "S",
-				ResponseModel = response
-			});
-		}
+            return Ok(new BaseResponseModel
+            {
+                Type = "S",
+                ResponseModel = response
+            });
+        }
 
-		#endregion
+        #endregion
 
-		#region Update
+        #region Update
 
-		#endregion
+        #endregion
 
-		#region Delete
+        #region Delete
 
-		#endregion
+        #endregion
 
-	}
+    }
 }
