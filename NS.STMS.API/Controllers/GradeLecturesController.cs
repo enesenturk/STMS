@@ -55,15 +55,15 @@ namespace NS.STMS.API.Controllers
 
             GradeLecturesResponseDto response = new GradeLecturesResponseDto();
 
-            response.Grades = grades.Select(x => x.Value).ToList();
-            response.Lectures = lectures.Select(x => x.Value).ToList();
+            response.Grades = grades;
+            response.Lectures = lectures;
 
             gradeLectures.ForEach(x =>
             {
                 response.GradeLectures.Add(new GradeLectureResponseDto
                 {
-                    Grade = x.t_grade.name,
-                    Lecture = x.t_lecture.name
+                    GradeId = x.t_grade_id,
+                    LectureId = x.t_lecture_id
                 });
             });
 

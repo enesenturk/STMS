@@ -1,10 +1,10 @@
 ﻿namespace NS.STMS.DTO.GradeLecture
 {
-	public class GradeLectureResponseDto
-	{
+    public class GradeLectureResponseDto
+    {
 
-		public string Grade { get; set; }
-		public string Lecture { get; set; }
+        public int GradeId { get; set; }
+        public int LectureId { get; set; }
 
-	}
+    }
 }
