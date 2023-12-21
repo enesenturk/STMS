@@ -11,4 +11,6 @@ public partial class t_county : IEntity
 	public string name { get; set; }
 
 	public virtual t_city t_city { get; set; }
+
+	public virtual ICollection<t_user> t_users { get; set; } = new List<t_user>();
 }

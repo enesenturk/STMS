@@ -7,7 +7,6 @@ public partial class ns_stmsContext : DbContext
 {
 	public ns_stmsContext()
 	{
-		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 	}
 
 	public ns_stmsContext(DbContextOptions<ns_stmsContext> options)
@@ -28,6 +27,8 @@ public partial class ns_stmsContext : DbContext
 	public virtual DbSet<t_grade_lecture> t_grade_lectures { get; set; }
 
 	public virtual DbSet<t_lecture> t_lectures { get; set; }
+
+	public virtual DbSet<t_user> t_users { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
@@ -120,6 +121,8 @@ public partial class ns_stmsContext : DbContext
 
 			entity.ToTable("t_grade_lecture");
 
+			entity.HasIndex(e => new { e.t_grade_id, e.t_lecture_id }, "grade_lecture_unique").IsUnique();
+
 			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 
@@ -145,6 +148,31 @@ public partial class ns_stmsContext : DbContext
 				.IsRequired()
 				.HasMaxLength(100);
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
+		modelBuilder.Entity<t_user>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("t_user_pkey");
+
+			entity.ToTable("t_user");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.email)
+				.IsRequired()
+				.HasMaxLength(100);
+			entity.Property(e => e.image_base64).HasColumnType("character varying");
+			entity.Property(e => e.name)
+				.IsRequired()
+				.HasMaxLength(100);
+			entity.Property(e => e.surname)
+				.IsRequired()
+				.HasMaxLength(100);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+
+			entity.HasOne(d => d.t_county).WithMany(p => p.t_users)
+				.HasForeignKey(d => d.t_county_id)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_user_t_county_id_fkey");
 		});
 
 		OnModelCreatingPartial(modelBuilder);
