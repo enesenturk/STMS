@@ -1,10 +1,10 @@
-﻿using NS.STMS.DTO;
-using NS.STMS.DTO.GradeLecture.Request;
+﻿using NS.STMS.DTO.GradeLecture.Request;
+using NS.STMS.DTO;
 using NS.STMS.Entity.Context;
 
-namespace NS.STMS.Business.Lecture.Managers.Abstract
+namespace NS.STMS.Business.Lectures.Managers.Abstract
 {
-	public interface IGradeManager
+	public interface IGradeLectureManager
 	{
 
 		#region Create
@@ -17,7 +17,6 @@ namespace NS.STMS.Business.Lecture.Managers.Abstract
 
 		List<t_grade_lecture> GetGradeLectures();
 		List<JSonDto> GetGradeLectures(int gradeId);
-		List<JSonDto> GetGrades();
 
 		#endregion
 

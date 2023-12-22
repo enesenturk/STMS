@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using NS.STMS.Business.Authentication.Managers.Abstract;
 using NS.STMS.Business.Authentication.Managers.Concrete;
-using NS.STMS.Business.Lecture.Managers.Abstract;
-using NS.STMS.Business.Lecture.Managers.Concrete;
-using NS.STMS.Business.Lecture.Mappings;
-using NS.STMS.Business.SystemTable.Managers.Abstract;
-using NS.STMS.Business.SystemTable.Managers.Concrete;
-using NS.STMS.Business.SystemTable.Mappings;
+using NS.STMS.Business.Lectures.Managers.Abstract;
+using NS.STMS.Business.Lectures.Managers.Concrete;
+using NS.STMS.Business.Lectures.Mappings;
+using NS.STMS.Business.SystemTables.EntityPropertySettings;
+using NS.STMS.Business.SystemTables.Managers.Abstract;
+using NS.STMS.Business.SystemTables.Managers.Concrete;
+using NS.STMS.Business.SystemTables.Mappings;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DAL.Authentication.Accessors.Concrete.EntityFramework;
 using NS.STMS.DAL.Lectures.Accessors.Abstract;
@@ -43,6 +44,8 @@ namespace NS.STMS.API.Extentions
 			services.AddSingleton<ICountryDal, EfCountryDal>();
 			services.AddSingleton<ICountyDal, EfCountyDal>();
 			services.AddSingleton<IDifficultyLevelDal, EfDifficultyLevelDal>();
+			services.AddSingleton<IPropertyDal, EfPropertyDal>();
+			services.AddSingleton<IPropertyTypeDal, EfPropertyTypeDal>();
 
 			#endregion
 
@@ -62,6 +65,7 @@ namespace NS.STMS.API.Extentions
 
 			services.AddSingleton<ILectureManager, LectureManager>();
 			services.AddSingleton<IGradeManager, GradeManager>();
+			services.AddSingleton<IGradeLectureManager, GradeLectureManager>();
 
 			#endregion
 
@@ -86,6 +90,14 @@ namespace NS.STMS.API.Extentions
 			IMapper mapper = mapperConfig.CreateMapper();
 			services.AddSingleton(mapper);
 
+		}
+
+		public static void RegisterEntityProperties(this IApplicationBuilder app)
+		{
+			IPropertyTypeDal propertyTypeDal = app.ApplicationServices.GetService<IPropertyTypeDal>();
+			IPropertyDal propertyDal = app.ApplicationServices.GetService<IPropertyDal>();
+
+			EntityPropertyHelper.SetEntityProperties(propertyTypeDal, propertyDal);
 		}
 
 	}

@@ -1,4 +1,5 @@
 ﻿using NS.STMS.DTO.Authentication.Request;
+using NS.STMS.DTO.Authentication.Response;
 
 namespace NS.STMS.Business.Authentication.Managers.Abstract
 {
@@ -12,6 +13,8 @@ namespace NS.STMS.Business.Authentication.Managers.Abstract
 		#endregion
 
 		#region Read
+
+		LoginResponseDto Login(LoginRequestDto requestDto);
 
 		#endregion
 

@@ -29,3 +29,13 @@ CREATE SEQUENCE IF NOT EXISTS public.t_user_id_seq
 
 
 ALTER TABLE t_user ALTER COLUMN id SET DEFAULT nextval('t_user_id_seq'::regclass);
+
+{
+  "Name": "Enes",
+  "Surname": "Şentürk",
+  "Email": "enesenturk61@gmail.com",
+  "DateOfBirth": "1996-09-04T00:00:00.000Z",
+  "GradeId": 10,
+  "SchoolName": "Akçaabat Anadolu Lisesi",
+  "CountyId": 898
+}

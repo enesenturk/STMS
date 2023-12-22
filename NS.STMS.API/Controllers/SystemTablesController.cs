@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.SystemTable.Managers.Abstract;
+using NS.STMS.Business.SystemTables.Managers.Abstract;
 using NS.STMS.DTO;
-using NS.STMS.DTO.SystemTable.DifficultyLevel;
+using NS.STMS.DTO.SystemTables.DifficultyLevel;
 
 namespace NS.STMS.API.Controllers
 {

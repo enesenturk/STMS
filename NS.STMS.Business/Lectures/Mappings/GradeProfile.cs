@@ -2,7 +2,7 @@
 using NS.STMS.DTO;
 using NS.STMS.Entity.Context;
 
-namespace NS.STMS.Business.Lecture.Mappings
+namespace NS.STMS.Business.Lectures.Mappings
 {
 	public class GradeProfile : Profile
 	{

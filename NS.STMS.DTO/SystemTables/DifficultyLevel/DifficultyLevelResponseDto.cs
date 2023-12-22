@@ -1,4 +1,4 @@
-﻿namespace NS.STMS.DTO.SystemTable.DifficultyLevel
+﻿namespace NS.STMS.DTO.SystemTables.DifficultyLevel
 {
 	public class DifficultyLevelResponseDto
 	{

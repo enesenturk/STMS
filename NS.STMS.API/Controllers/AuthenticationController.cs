@@ -2,6 +2,7 @@
 using NS.STMS.API.Models;
 using NS.STMS.Business.Authentication.Managers.Abstract;
 using NS.STMS.DTO.Authentication.Request;
+using NS.STMS.DTO.Authentication.Response;
 
 namespace NS.STMS.API.Controllers
 {
@@ -38,6 +39,19 @@ namespace NS.STMS.API.Controllers
 		#endregion
 
 		#region Read
+
+		[HttpPost]
+		[Route("Login")]
+		public OkObjectResult Login(LoginRequestDto requestDto)
+		{
+			LoginResponseDto response = _authenticationManager.Login(requestDto);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = response
+			});
+		}
 
 		#endregion
 

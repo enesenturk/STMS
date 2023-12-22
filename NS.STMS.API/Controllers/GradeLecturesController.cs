@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.Lecture.Managers.Abstract;
+using NS.STMS.Business.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLecture.Request;
 using NS.STMS.DTO.GradeLecture.Response;
@@ -17,14 +17,17 @@ namespace NS.STMS.API.Controllers
 
 		private readonly IGradeManager _gradeManager;
 		private readonly ILectureManager _lectureManager;
+		private readonly IGradeLectureManager _gradeLectureManager;
 
 		public GradeLecturesController(
 			IGradeManager gradeManager,
+			IGradeLectureManager gradeLectureManager,
 			ILectureManager lectureManager
 			)
 		{
 			_gradeManager = gradeManager;
 			_lectureManager = lectureManager;
+			_gradeLectureManager = gradeLectureManager;
 		}
 
 		#endregion
@@ -34,7 +37,7 @@ namespace NS.STMS.API.Controllers
 		[HttpPost]
 		public OkObjectResult GradeLecture(CreateGradeLectureRequestDto requestDto)
 		{
-			_gradeManager.CreateGradeLecture(requestDto);
+			_gradeLectureManager.CreateGradeLecture(requestDto);
 
 			return Ok(new BaseResponseModel
 			{
@@ -51,7 +54,7 @@ namespace NS.STMS.API.Controllers
 		{
 			List<JSonDto> lectures = _lectureManager.GetLectures();
 			List<JSonDto> grades = _gradeManager.GetGrades();
-			List<t_grade_lecture> gradeLectures = _gradeManager.GetGradeLectures();
+			List<t_grade_lecture> gradeLectures = _gradeLectureManager.GetGradeLectures();
 
 			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
 
@@ -78,7 +81,7 @@ namespace NS.STMS.API.Controllers
 		[Route("{gradeId}")]
 		public OkObjectResult GradeLectures(int gradeId)
 		{
-			List<JSonDto> response = _gradeManager.GetGradeLectures(gradeId);
+			List<JSonDto> response = _gradeLectureManager.GetGradeLectures(gradeId);
 
 			return Ok(new BaseResponseModel
 			{

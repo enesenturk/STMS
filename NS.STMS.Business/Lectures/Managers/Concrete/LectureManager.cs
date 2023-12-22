@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using NS.STMS.Business.Lecture.Managers.Abstract;
+using NS.STMS.Business.Lectures.Managers.Abstract;
 using NS.STMS.DAL.Lectures.Accessors.Abstract;
 using NS.STMS.DTO;
 
-namespace NS.STMS.Business.Lecture.Managers.Concrete
+namespace NS.STMS.Business.Lectures.Managers.Concrete
 {
     public class LectureManager : ILectureManager
 	{

@@ -1,32 +1,29 @@
 ﻿using AutoMapper;
-using NS.STMS.Business.Lecture.Managers.Abstract;
 using NS.STMS.DAL.Lectures.Accessors.Abstract;
-using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLecture.Request;
+using NS.STMS.DTO;
 using NS.STMS.Entity.Context;
+using NS.STMS.Business.Lectures.Managers.Abstract;
 
-namespace NS.STMS.Business.Lecture.Managers.Concrete
+namespace NS.STMS.Business.Lectures.Managers.Concrete
 {
-    public class GradeManager : IGradeManager
+	public class GradeLectureManager : IGradeLectureManager
 	{
 
 		#region CTOR
 
 		private int _id = 1;
 
-		private readonly IGradeDal _gradeDal;
 		private readonly IGradeLectureDal _gradeLectureDal;
 
 		private readonly IMapper _mapper;
 
-		public GradeManager(
-			IGradeDal gradeDal,
+		public GradeLectureManager(
 			IGradeLectureDal gradeLectureDal,
 
 			IMapper mapper
 			)
 		{
-			_gradeDal = gradeDal;
 			_gradeLectureDal = gradeLectureDal;
 
 			_mapper = mapper;
@@ -62,13 +59,6 @@ namespace NS.STMS.Business.Lecture.Managers.Concrete
 					new string[] { "t_lecture" },
 					x => x.t_grade_id == gradeId
 					)
-				);
-		}
-
-		public List<JSonDto> GetGrades()
-		{
-			return _mapper.Map<List<JSonDto>>(
-				 _gradeDal.GetList(x => x.id)
 				);
 		}
 

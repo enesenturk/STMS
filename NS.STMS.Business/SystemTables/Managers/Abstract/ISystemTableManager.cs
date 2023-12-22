@@ -1,7 +1,7 @@
 ﻿using NS.STMS.DTO;
-using NS.STMS.DTO.SystemTable.DifficultyLevel;
+using NS.STMS.DTO.SystemTables.DifficultyLevel;
 
-namespace NS.STMS.Business.SystemTable.Managers.Abstract
+namespace NS.STMS.Business.SystemTables.Managers.Abstract
 {
 	public interface ISystemTableManager
 	{

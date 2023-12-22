@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using NS.STMS.Core.Extentions;
 using NS.STMS.DTO;
-using NS.STMS.DTO.SystemTable.DifficultyLevel;
+using NS.STMS.DTO.SystemTables.DifficultyLevel;
 using NS.STMS.Entity.Context;
 
-namespace NS.STMS.Business.SystemTable.Mappings
+namespace NS.STMS.Business.SystemTables.Mappings
 {
 	public class SystemTableProfile : Profile
 	{

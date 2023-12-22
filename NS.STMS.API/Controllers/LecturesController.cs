@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.Lecture.Managers.Abstract;
+using NS.STMS.Business.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 
 namespace NS.STMS.API.Controllers

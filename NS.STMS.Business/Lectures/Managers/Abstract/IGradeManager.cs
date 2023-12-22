@@ -1,8 +1,8 @@
 ﻿using NS.STMS.DTO;
 
-namespace NS.STMS.Business.Lecture.Managers.Abstract
+namespace NS.STMS.Business.Lectures.Managers.Abstract
 {
-	public interface ILectureManager
+	public interface IGradeManager
 	{
 
 		#region Create
@@ -11,8 +11,7 @@ namespace NS.STMS.Business.Lecture.Managers.Abstract
 
 		#region Read
 
-		JSonDto GetLecture(int lectureId);
-		List<JSonDto> GetLectures();
+		List<JSonDto> GetGrades();
 
 		#endregion
 

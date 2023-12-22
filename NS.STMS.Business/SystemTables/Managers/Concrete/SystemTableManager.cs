@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using NS.STMS.Business.SystemTable.Managers.Abstract;
+using NS.STMS.Business.SystemTables.Managers.Abstract;
 using NS.STMS.DAL.SystemTables.Accessors.Abstract;
 using NS.STMS.DTO;
-using NS.STMS.DTO.SystemTable.DifficultyLevel;
-using NS.STMS.Entity.Context;
-using System.Linq.Expressions;
+using NS.STMS.DTO.SystemTables.DifficultyLevel;
 
-namespace NS.STMS.Business.SystemTable.Managers.Concrete
+namespace NS.STMS.Business.SystemTables.Managers.Concrete
 {
-    public class SystemTableManager : ISystemTableManager
+	public class SystemTableManager : ISystemTableManager
 	{
 
 		#region CTOR
