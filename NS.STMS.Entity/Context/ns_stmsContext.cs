@@ -30,6 +30,10 @@ public partial class ns_stmsContext : DbContext
 
 	public virtual DbSet<t_lecture> t_lectures { get; set; }
 
+	public virtual DbSet<t_property> t_properties { get; set; }
+
+	public virtual DbSet<t_property_type> t_property_types { get; set; }
+
 	public virtual DbSet<t_student> t_students { get; set; }
 
 	public virtual DbSet<t_user> t_users { get; set; }
@@ -154,6 +158,32 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 		});
 
+		modelBuilder.Entity<t_property>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("t_property_pkey");
+
+			entity.ToTable("t_property");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.name)
+				.IsRequired()
+				.HasMaxLength(50);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
+		modelBuilder.Entity<t_property_type>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("t_property_type_pkey");
+
+			entity.ToTable("t_property_type");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.name)
+				.IsRequired()
+				.HasMaxLength(50);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
 		modelBuilder.Entity<t_student>(entity =>
 		{
 			entity.HasKey(e => e.id).HasName("t_student_pkey");
@@ -194,6 +224,7 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.password)
 				.IsRequired()
 				.HasMaxLength(200);
+			entity.Property(e => e.password_salt).IsRequired();
 			entity.Property(e => e.surname)
 				.IsRequired()
 				.HasMaxLength(100);
@@ -203,6 +234,11 @@ public partial class ns_stmsContext : DbContext
 				.HasForeignKey(d => d.t_county_id)
 				.OnDelete(DeleteBehavior.ClientSetNull)
 				.HasConstraintName("t_user_t_county_id_fkey");
+
+			entity.HasOne(d => d.t_property_id_user_typeNavigation).WithMany(p => p.t_users)
+				.HasForeignKey(d => d.t_property_id_user_type)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_user_t_property_id_fkey");
 		});
 
 		OnModelCreatingPartial(modelBuilder);

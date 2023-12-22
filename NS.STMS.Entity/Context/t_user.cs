@@ -19,7 +19,13 @@ public partial class t_user : IEntity
 
 	public string password { get; set; }
 
+	public byte[] password_salt { get; set; }
+
+	public int t_property_id_user_type { get; set; }
+
 	public virtual t_county t_county { get; set; }
+
+	public virtual t_property t_property_id_user_typeNavigation { get; set; }
 
 	public virtual t_student t_student { get; set; }
 }

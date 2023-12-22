@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 namespace NS.STMS.Entity.Context;
 
-public partial class t_student
+public partial class t_property
 {
     public int id { get; set; }
 
-    public int t_user_id { get; set; }
+    public string name { get; set; }
 
-    public int t_grade_id { get; set; }
-
-    public string school_name { get; set; }
+    public int t_property_type_id { get; set; }
 
     public DateTime created_at { get; set; }
 
@@ -23,7 +21,5 @@ public partial class t_student
 
     public bool is_deleted { get; set; }
 
-    public virtual t_grade t_grade { get; set; }
-
-    public virtual t_user t_user { get; set; }
+    public virtual ICollection<t_user> t_users { get; set; } = new List<t_user>();
 }
