@@ -18,4 +18,6 @@ public partial class t_user : IEntity
 	public string image_base64 { get; set; }
 
 	public virtual t_county t_county { get; set; }
+
+	public virtual t_student t_student { get; set; }
 }

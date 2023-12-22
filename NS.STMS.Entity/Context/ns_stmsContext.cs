@@ -28,6 +28,8 @@ public partial class ns_stmsContext : DbContext
 
 	public virtual DbSet<t_lecture> t_lectures { get; set; }
 
+	public virtual DbSet<t_student> t_students { get; set; }
+
 	public virtual DbSet<t_user> t_users { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -148,6 +150,29 @@ public partial class ns_stmsContext : DbContext
 				.IsRequired()
 				.HasMaxLength(100);
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
+		modelBuilder.Entity<t_student>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("t_student_pkey");
+
+			entity.ToTable("t_student");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.school_name)
+				.IsRequired()
+				.HasMaxLength(100);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+
+			entity.HasOne(d => d.t_grade).WithMany(p => p.t_students)
+				.HasForeignKey(d => d.t_grade_id)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_student_t_grade_id_fkey");
+
+			entity.HasOne(d => d.t_user).WithOne(p => p.t_student)
+				.HasForeignKey<t_student>(d => d.t_user_id)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("t_student_t_user_id_fkey");
 		});
 
 		modelBuilder.Entity<t_user>(entity =>
