@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.API.Models.GradeModels;
 using NS.STMS.Business.Lecture.Managers.Abstract;
 using NS.STMS.DTO;
 

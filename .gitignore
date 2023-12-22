@@ -1,4 +1,4 @@
-.vs/ 
+.vs/
 packages/
 
 NS.STMS.Business/bin/
@@ -26,3 +26,4 @@ NS.STMS.API/bin/
 NS.STMS.API/obj/
 NS.STMS.API/appsettings.Development.json
 NS.STMS.API/appsettings.json
+NS.STMS.API/NS.STMS.API.csproj.user

@@ -2,7 +2,7 @@
 
 namespace NS.STMS.Business.Authentication.Managers.Abstract
 {
-	public interface IUserManager
+	public interface IAuthenticationManager
 	{
 
 		#region Create

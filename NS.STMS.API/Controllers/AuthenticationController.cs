@@ -12,11 +12,11 @@ namespace NS.STMS.API.Controllers
 
 		#region CTOR
 
-		private readonly IUserManager _userManager;
+		private readonly IAuthenticationManager _authenticationManager;
 
-		public AuthenticationController(IUserManager userManager)
+		public AuthenticationController(IAuthenticationManager authenticationManager)
 		{
-			_userManager = userManager;
+			_authenticationManager = authenticationManager;
 		}
 
 		#endregion
@@ -24,9 +24,10 @@ namespace NS.STMS.API.Controllers
 		#region Create
 
 		[HttpPost]
+		[Route("Register")]
 		public OkObjectResult Register(CreateStudentRequestDto requestDto)
 		{
-			_userManager.CreateStudent(requestDto);
+			_authenticationManager.CreateStudent(requestDto);
 
 			return Ok(new BaseResponseModel
 			{
