@@ -191,6 +191,9 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.name)
 				.IsRequired()
 				.HasMaxLength(100);
+			entity.Property(e => e.password)
+				.IsRequired()
+				.HasMaxLength(200);
 			entity.Property(e => e.surname)
 				.IsRequired()
 				.HasMaxLength(100);
