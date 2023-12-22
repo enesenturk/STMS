@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using NS.STMS.Business.SystemTable.Managers.Abstract;
-using NS.STMS.DAL.Abstract.SystemTable;
+using NS.STMS.DAL.SystemTables.Accessors.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.SystemTable.DifficultyLevel;
 using NS.STMS.Entity.Context;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace NS.STMS.Business.SystemTable.Managers.Concrete
 {
-	public class SystemTableManager : ISystemTableManager
+    public class SystemTableManager : ISystemTableManager
 	{
 
 		#region CTOR

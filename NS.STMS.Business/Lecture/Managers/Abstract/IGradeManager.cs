@@ -1,4 +1,5 @@
 ﻿using NS.STMS.DTO;
+using NS.STMS.DTO.GradeLecture.Request;
 using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Lecture.Managers.Abstract
@@ -8,7 +9,7 @@ namespace NS.STMS.Business.Lecture.Managers.Abstract
 
 		#region Create
 
-		t_grade_lecture CreateGradeLecture(int gradeId, int lectureId);
+		t_grade_lecture CreateGradeLecture(CreateGradeLectureRequestDto requestDto);
 
 		#endregion
 

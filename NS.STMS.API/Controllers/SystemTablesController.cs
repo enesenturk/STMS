@@ -12,17 +12,10 @@ namespace NS.STMS.API.Controllers
 
 		#region CTOR
 
-		private readonly ILogger<SystemTablesController> _logger;
-
 		private readonly ISystemTableManager _systemTableManager;
 
-		public SystemTablesController(
-			ILogger<SystemTablesController> logger,
-			ISystemTableManager systemTableManager
-			)
+		public SystemTablesController(ISystemTableManager systemTableManager)
 		{
-			_logger = logger;
-
 			_systemTableManager = systemTableManager;
 		}
 

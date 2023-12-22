@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using NS.STMS.Business.Lecture.Managers.Abstract;
-using NS.STMS.DAL.Abstract.Lectures;
+using NS.STMS.DAL.Lectures.Accessors.Abstract;
 using NS.STMS.DTO;
 
 namespace NS.STMS.Business.Lecture.Managers.Concrete
 {
-	public class LectureManager : ILectureManager
+    public class LectureManager : ILectureManager
 	{
 
 		#region CTOR

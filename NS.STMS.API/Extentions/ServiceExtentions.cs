@@ -5,14 +5,14 @@ using NS.STMS.Business.Lecture.Mappings;
 using NS.STMS.Business.SystemTable.Managers.Abstract;
 using NS.STMS.Business.SystemTable.Managers.Concrete;
 using NS.STMS.Business.SystemTable.Mappings;
-using NS.STMS.DAL.Abstract.Lectures;
-using NS.STMS.DAL.Abstract.SystemTable;
-using NS.STMS.DAL.Concrete.EntityFramework.Lecture;
-using NS.STMS.DAL.Concrete.EntityFramework.SystemTable;
+using NS.STMS.DAL.Lectures.Accessors.Abstract;
+using NS.STMS.DAL.Lectures.Accessors.Concrete.EntityFramework;
+using NS.STMS.DAL.SystemTables.Accessors.Abstract;
+using NS.STMS.DAL.SystemTables.Accessors.Concrete.EntityFramework;
 
 namespace NS.STMS.API.Extentions
 {
-	public static class ServiceExtentions
+    public static class ServiceExtentions
 	{
 
 		public static void BindDataAccess(this IServiceCollection services)

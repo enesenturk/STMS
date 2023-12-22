@@ -13,5 +13,6 @@ public partial class t_student : IEntity
 
 	public virtual t_grade t_grade { get; set; }
 
-	public virtual t_user t_user { get; set; }
+	public virtual ICollection<t_user> t_users { get; set; } = new List<t_user>();
+
 }
