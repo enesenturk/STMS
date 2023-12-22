@@ -169,8 +169,8 @@ public partial class ns_stmsContext : DbContext
 				.OnDelete(DeleteBehavior.ClientSetNull)
 				.HasConstraintName("t_student_t_grade_id_fkey");
 
-			entity.HasOne(d => d.t_user).WithOne(p => p.t_student)
-				.HasForeignKey<t_student>(d => d.t_user_id)
+			entity.HasOne(d => d.t_user).WithMany(p => p.t_students)
+				.HasForeignKey(d => d.t_user_id)
 				.OnDelete(DeleteBehavior.ClientSetNull)
 				.HasConstraintName("t_student_t_user_id_fkey");
 		});
