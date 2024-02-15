@@ -61,7 +61,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		{
 			using (var context = new TContext())
 			{
-				return filter == null
+				return filter is null
 				? context.Set<TEntity>().DeletedFilter().OrderByConsideringNulls(OrderBy).ToList()
 				: context.Set<TEntity>().DeletedFilter().Where(filter).OrderByConsideringNulls(OrderBy).ToList();
 			}
@@ -89,10 +89,9 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		public List<TEntity> GetListDistinct(Expression<Func<TEntity, bool>> filter = null)
 		{
-			// Todo: Id'ye göre orderla
 			using (var context = new TContext())
 			{
-				return filter == null
+				return filter is null
 					? context.Set<TEntity>().Distinct().OrderBy(x => x.id).ToList()
 					: context.Set<TEntity>().Where(filter).Distinct().OrderBy(x => x.id).ToList();
 			}
@@ -102,7 +101,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		{
 			using (var context = new TContext())
 			{
-				return filter == null
+				return filter is null
 					? context.Set<TEntity>().Count()
 					: context.Set<TEntity>().Count(filter);
 			}
@@ -129,7 +128,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		{
 			using (var context = new TContext())
 			{
-				return filter == null
+				return filter is null
 					? context.Set<TEntity>().Max(OrderBy)
 					: context.Set<TEntity>().Where(filter).Max(OrderBy);
 			}
@@ -141,7 +140,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			{
 				TEntity entity = Get(filter);
 
-				return entity == null;
+				return entity is null;
 			}
 		}
 

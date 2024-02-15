@@ -10,7 +10,7 @@ namespace NS.STMS.Business.SystemTables.EntityPropertySettings
 		{
 			base.OnGetValue(args);
 
-			if (args.Value == null || (int)args.Value == 0)
+			if (args.Value is null || (int)args.Value is 0)
 				throw new Exception("Something went wrong while setting system properties. Please contact to the system admin.");
 		}
 

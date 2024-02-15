@@ -27,7 +27,7 @@ namespace NS.STMS.Business.SystemTables.EntityPropertySettings
 
 				PropertyInfo property = entityPropertyType.GetProperty(propertyType.name);
 
-				if (property == null)
+				if (property is null)
 					ThrowError();
 
 				property.SetValue(null, propertyType.id);
