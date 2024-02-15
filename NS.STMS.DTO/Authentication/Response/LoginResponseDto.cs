@@ -1,4 +1,6 @@
-﻿namespace NS.STMS.DTO.Authentication.Response
+﻿using NS.STMS.DTO.SystemTables.Address;
+
+namespace NS.STMS.DTO.Authentication.Response
 {
 	public class LoginResponseDto
 	{
@@ -11,9 +13,9 @@
 
 		public DateOnly DateOfBirth { get; set; }
 
-		public int CountyId { get; set; }
-
 		public string ImageBase64 { get; set; }
+
+		public AddressDto Address { get; set; }
 
 		public bool IsStudent { get; set; }
 

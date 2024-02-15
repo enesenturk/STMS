@@ -1,9 +1,12 @@
 ﻿using NS.STMS.Business.Authentication.Managers.Abstract;
+using NS.STMS.Business.SystemTables.EntityPropertySettings.Data.EntityProperties;
 using NS.STMS.Core.Aspects.Postsharp;
 using NS.STMS.Core.Helpers;
+using NS.STMS.Core.Utilities.ExceptionHandling;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
+using NS.STMS.DTO.SystemTables.Address;
 using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Authentication.Managers.Concrete
@@ -45,7 +48,8 @@ namespace NS.STMS.Business.Authentication.Managers.Concrete
 					name = requestDto.Name,
 					surname = requestDto.Surname,
 					date_of_birth = DateOnly.FromDateTime(requestDto.DateOfBirth),
-					t_county_id = requestDto.CountyId
+					t_county_id = requestDto.CountyId,
+					t_property_id_user_type = UserTypes.Student
 				}, _id);
 
 				_studentDal.Add(new t_student
@@ -67,15 +71,51 @@ namespace NS.STMS.Business.Authentication.Managers.Concrete
 
 		public LoginResponseDto Login(LoginRequestDto requestDto)
 		{
-			string hash = PasswordHasher.HashPasword(requestDto.Password, out var salt);
+			t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.EMail, new string[] { "t_county" });
 
-			t_user loginUser = _userDal.Get(x => x.email == requestDto.EMail && x.password == hash && x.password_salt == salt);
+			if (loginUser is null) return null;
 
-			if (loginUser == null) return null;
+			bool verified = PasswordHasher.VerifyPassword(requestDto.Password, loginUser.password, loginUser.password_salt);
 
-			//loginUser.t_property_id_user_type
+			if (!verified) return null;
 
-			throw new Exception();
+			LoginResponseDto response = new LoginResponseDto
+			{
+				EMail = loginUser.email,
+				Name = loginUser.name,
+				Surname = loginUser.surname,
+				DateOfBirth = loginUser.date_of_birth,
+				ImageBase64 = loginUser.image_base64,
+				Address = new AddressDto
+				{
+					CountyId = loginUser.t_county_id,
+					CityId = loginUser.t_county.t_city_id
+				}
+			};
+
+			if (loginUser.t_property_id_user_type == UserTypes.Student)
+			{
+				t_student student = _studentDal.Get(x => x.t_user_id == loginUser.id);
+
+				if (student is null) throw new CoreException("Please contact to the system admin.");
+
+				response.IsStudent = true;
+				response.Student = new StudentLoginResponseDto
+				{
+					GradeId = student.t_grade_id,
+					SchoolName = student.school_name
+				};
+			}
+			else if (loginUser.t_property_id_user_type == UserTypes.Teacher)
+			{
+				throw new NotImplementedException();
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
+
+			return response;
 		}
 
 		#endregion
