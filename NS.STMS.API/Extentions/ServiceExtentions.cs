@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using NS.STMS.Business.Authentication.Managers.Abstract;
-using NS.STMS.Business.Authentication.Managers.Concrete;
-using NS.STMS.Business.Lectures.Managers.Abstract;
-using NS.STMS.Business.Lectures.Managers.Concrete;
 using NS.STMS.Business.Lectures.Mappings;
-using NS.STMS.Business.SystemTables.EntityPropertySettings;
-using NS.STMS.Business.SystemTables.Managers.Abstract;
-using NS.STMS.Business.SystemTables.Managers.Concrete;
+using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
+using NS.STMS.Business.Modules.Authentication.Managers.Concrete;
+using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
+using NS.STMS.Business.Modules.Lectures.Managers.Concrete;
+using NS.STMS.Business.Modules.SystemTables.EntityPropertySettings;
+using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
+using NS.STMS.Business.Modules.SystemTables.Managers.Concrete;
 using NS.STMS.Business.SystemTables.Mappings;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DAL.Authentication.Accessors.Concrete.EntityFramework;
@@ -17,7 +17,7 @@ using NS.STMS.DAL.SystemTables.Accessors.Concrete.EntityFramework;
 
 namespace NS.STMS.API.Extentions
 {
-	public static class ServiceExtentions
+    public static class ServiceExtentions
 	{
 
 		public static void BindDataAccess(this IServiceCollection services)

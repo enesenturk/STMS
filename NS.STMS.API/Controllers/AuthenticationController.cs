@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.Authentication.Managers.Abstract;
+using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
 
 namespace NS.STMS.API.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class AuthenticationController : ControllerBase
 	{

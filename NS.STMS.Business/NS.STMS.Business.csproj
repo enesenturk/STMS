@@ -17,4 +17,8 @@
     <ProjectReference Include="..\NS.STMS.Settings\NS.STMS.Settings.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Users\" />
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.Lectures.Managers.Abstract;
+using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 
 namespace NS.STMS.API.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class LecturesController : ControllerBase
 	{

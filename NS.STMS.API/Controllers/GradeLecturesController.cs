@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
-using NS.STMS.Business.Lectures.Managers.Abstract;
+using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLecture.Request;
 using NS.STMS.DTO.GradeLecture.Response;
@@ -8,7 +8,7 @@ using NS.STMS.Entity.Context;
 
 namespace NS.STMS.API.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class GradeLecturesController : ControllerBase
 	{
