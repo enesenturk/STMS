@@ -1,4 +1,4 @@
-﻿using NS.STMS.DTO.GradeLecture.Request;
+﻿using NS.STMS.DTO.GradeLectures.Request;
 using NS.STMS.DTO;
 using NS.STMS.Entity.Context;
 

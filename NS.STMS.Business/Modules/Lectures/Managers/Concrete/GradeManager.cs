@@ -2,7 +2,7 @@
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DAL.Lectures.Accessors.Abstract;
 using NS.STMS.DTO;
-using NS.STMS.DTO.GradeLecture.Request;
+using NS.STMS.DTO.GradeLectures.Request;
 using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Modules.Lectures.Managers.Concrete

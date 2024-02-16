@@ -3,8 +3,8 @@
 	public class AddressDto
 	{
 
-		public int CityId { get; set; }
-		public int CountyId { get; set; }
+		public int cityId { get; set; }
+		public int countyId { get; set; }
 
 	}
 }

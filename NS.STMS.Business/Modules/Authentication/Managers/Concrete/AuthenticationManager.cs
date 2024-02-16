@@ -11,122 +11,122 @@ using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 {
-    public class AuthenticationManager : IAuthenticationManager
-    {
+	public class AuthenticationManager : IAuthenticationManager
+	{
 
-        #region CTOR
+		#region CTOR
 
-        private int _id = 1;
-        private readonly IUserDal _userDal;
-        private readonly IStudentDal _studentDal;
+		private int _id = 1;
+		private readonly IUserDal _userDal;
+		private readonly IStudentDal _studentDal;
 
-        public AuthenticationManager(
-            IUserDal userDal,
-            IStudentDal studentDal
-            )
-        {
-            _userDal = userDal;
-            _studentDal = studentDal;
-        }
+		public AuthenticationManager(
+			IUserDal userDal,
+			IStudentDal studentDal
+			)
+		{
+			_userDal = userDal;
+			_studentDal = studentDal;
+		}
 
-        #endregion
+		#endregion
 
-        #region Create
+		#region Create
 
-        [TransactionalOperationAspect]
-        public void CreateStudent(CreateStudentRequestDto requestDto)
-        {
-            try
-            {
-                string hash = PasswordHasher.HashPasword(requestDto.Password, out var salt);
+		[TransactionalOperationAspect]
+		public void CreateStudent(CreateStudentRequestDto requestDto)
+		{
+			try
+			{
+				string hash = PasswordHasher.HashPasword(requestDto.password, out var salt);
 
-                t_user user = _userDal.Add(new t_user
-                {
-                    email = requestDto.Email,
-                    password = hash,
-                    password_salt = salt,
-                    name = requestDto.Name,
-                    surname = requestDto.Surname,
-                    date_of_birth = DateOnly.FromDateTime(requestDto.DateOfBirth),
-                    t_county_id = requestDto.CountyId,
-                    t_property_id_user_type = UserTypes.Student
-                }, _id);
+				t_user user = _userDal.Add(new t_user
+				{
+					email = requestDto.email,
+					password = hash,
+					password_salt = salt,
+					name = requestDto.name,
+					surname = requestDto.surname,
+					date_of_birth = DateOnly.FromDateTime(requestDto.dateOfBirth),
+					t_county_id = requestDto.countyId,
+					t_property_id_user_type = UserTypes.Student
+				}, _id);
 
-                _studentDal.Add(new t_student
-                {
-                    t_user_id = user.id,
-                    t_grade_id = requestDto.GradeId,
-                    school_name = requestDto.SchoolName,
-                }, _id);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+				_studentDal.Add(new t_student
+				{
+					t_user_id = user.id,
+					t_grade_id = requestDto.gradeId,
+					school_name = requestDto.schoolName,
+				}, _id);
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region Read
+		#region Read
 
-        public LoginResponseDto Login(LoginRequestDto requestDto)
-        {
-            t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.EMail, new string[] { "t_county" });
+		public LoginResponseDto Login(LoginRequestDto requestDto)
+		{
+			t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.email, new string[] { "t_county" });
 
-            if (loginUser is null) return null;
+			if (loginUser is null) return null;
 
-            bool verified = PasswordHasher.VerifyPassword(requestDto.Password, loginUser.password, loginUser.password_salt);
+			bool verified = PasswordHasher.VerifyPassword(requestDto.password, loginUser.password, loginUser.password_salt);
 
-            if (!verified) return null;
+			if (!verified) return null;
 
-            LoginResponseDto response = new LoginResponseDto
-            {
-                EMail = loginUser.email,
-                Name = loginUser.name,
-                Surname = loginUser.surname,
-                DateOfBirth = loginUser.date_of_birth,
-                ImageBase64 = loginUser.image_base64,
-                Address = new AddressDto
-                {
-                    CountyId = loginUser.t_county_id,
-                    CityId = loginUser.t_county.t_city_id
-                }
-            };
+			LoginResponseDto response = new LoginResponseDto
+			{
+				email = loginUser.email,
+				name = loginUser.name,
+				surname = loginUser.surname,
+				dateOfBirth = loginUser.date_of_birth,
+				imageBase64 = loginUser.image_base64,
+				address = new AddressDto
+				{
+					countyId = loginUser.t_county_id,
+					cityId = loginUser.t_county.t_city_id
+				}
+			};
 
-            if (loginUser.t_property_id_user_type == UserTypes.Student)
-            {
-                t_student student = _studentDal.Get(x => x.t_user_id == loginUser.id);
+			if (loginUser.t_property_id_user_type == UserTypes.Student)
+			{
+				t_student student = _studentDal.Get(x => x.t_user_id == loginUser.id);
 
-                if (student is null) throw new CoreException("Please contact to the system admin.");
+				if (student is null) throw new CoreException("Please contact to the system admin.");
 
-                response.IsStudent = true;
-                response.Student = new StudentLoginResponseDto
-                {
-                    GradeId = student.t_grade_id,
-                    SchoolName = student.school_name
-                };
-            }
-            else if (loginUser.t_property_id_user_type == UserTypes.Teacher)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+				response.isStudent = true;
+				response.student = new StudentLoginResponseDto
+				{
+					gradeId = student.t_grade_id,
+					schoolName = student.school_name
+				};
+			}
+			else if (loginUser.t_property_id_user_type == UserTypes.Teacher)
+			{
+				throw new NotImplementedException();
+			}
+			else
+			{
+				throw new NotImplementedException();
+			}
 
-            return response;
-        }
+			return response;
+		}
 
-        #endregion
+		#endregion
 
-        #region Update
+		#region Update
 
-        #endregion
+		#endregion
 
-        #region Delete
+		#region Delete
 
-        #endregion
+		#endregion
 
-    }
+	}
 }

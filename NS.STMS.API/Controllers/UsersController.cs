@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NS.STMS.API.Models;
+using NS.STMS.Business.Modules.Users.Managers.Abstract;
+using NS.STMS.DTO.Users.Response;
 
 namespace NS.STMS.API.Controllers
 {
@@ -9,8 +12,11 @@ namespace NS.STMS.API.Controllers
 
 		#region CTOR
 
-		public UsersController()
+		private readonly IUserManager _userManager;
+
+		public UsersController(IUserManager userManager)
 		{
+			_userManager = userManager;
 		}
 
 		#endregion
@@ -20,6 +26,18 @@ namespace NS.STMS.API.Controllers
 		#endregion
 
 		#region Read
+
+		[HttpGet]
+		public OkObjectResult Users()
+		{
+			List<UserBaseResponseDto> response = _userManager.GetUsers();
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = response
+			});
+		}
 
 		#endregion
 

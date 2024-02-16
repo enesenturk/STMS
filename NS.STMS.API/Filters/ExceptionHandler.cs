@@ -35,10 +35,10 @@ namespace NS.STMS.API.Filters
 			//Exception exception = context.Exception;
 			//Type ExceptionType = exception.GetType();
 
-			//bool isValidationException = ExceptionType.Name == "ValidationException";
-			//bool isCoreException = ExceptionType.Name == "CoreException";
-			//bool isAuthorizationException = ExceptionType.Name == "AuthorizationException";
-			//bool isDateFormatException = ExceptionType.Name == "FormatException" && exception.ToString().Contains("DateTime");
+			//bool isValidationException = ExceptionType.name == "ValidationException";
+			//bool isCoreException = ExceptionType.name == "CoreException";
+			//bool isAuthorizationException = ExceptionType.name == "AuthorizationException";
+			//bool isDateFormatException = ExceptionType.name == "FormatException" && exception.ToString().Contains("DateTime");
 
 			//if (isDateFormatException)
 			//{

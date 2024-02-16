@@ -14,12 +14,12 @@ namespace NS.STMS.Business.Modules.SystemTables.Mappings
             CreateMap<t_difficulty_level, DifficultyLevelResponseDto>().IgnoreAllVirtual();
 
             CreateMap<t_city, JSonDto>()
-                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.id))
-                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.name));
+                .ForMember(dest => dest.key, opt => opt.MapFrom(src => src.id))
+                .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.name));
 
             CreateMap<t_county, JSonDto>()
-                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.id))
-                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.name));
+                .ForMember(dest => dest.key, opt => opt.MapFrom(src => src.id))
+                .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.name));
 
         }
     }

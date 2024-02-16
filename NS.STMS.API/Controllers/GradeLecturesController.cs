@@ -2,13 +2,13 @@
 using NS.STMS.API.Models;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
-using NS.STMS.DTO.GradeLecture.Request;
-using NS.STMS.DTO.GradeLecture.Response;
+using NS.STMS.DTO.GradeLectures.Request;
+using NS.STMS.DTO.GradeLectures.Response;
 using NS.STMS.Entity.Context;
 
 namespace NS.STMS.API.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class GradeLecturesController : ControllerBase
 	{
@@ -58,15 +58,15 @@ namespace NS.STMS.API.Controllers
 
 			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
 
-			response.Grades = grades;
-			response.Lectures = lectures;
+			response.grades = grades;
+			response.lectures = lectures;
 
 			gradeLectures.ForEach(x =>
 			{
-				response.GradeLectures.Add(new GradeLectureResponseDto
+				response.gradeLectures.Add(new GradeLectureResponseDto
 				{
-					GradeId = x.t_grade_id,
-					LectureId = x.t_lecture_id
+					gradeId = x.t_grade_id,
+					lectureId = x.t_lecture_id
 				});
 			});
 

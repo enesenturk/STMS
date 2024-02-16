@@ -2,8 +2,8 @@
 {
 	public class StudentLoginResponseDto
 	{
-		public int GradeId { get; set; }
+		public int gradeId { get; set; }
 
-		public string SchoolName { get; set; }
+		public string schoolName { get; set; }
 	}
 }
