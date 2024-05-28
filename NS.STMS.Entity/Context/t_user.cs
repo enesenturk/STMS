@@ -27,5 +27,5 @@ public partial class t_user : IEntity
 
 	public virtual t_property t_property_id_user_typeNavigation { get; set; }
 
-	public virtual t_student t_student { get; set; }
+	public virtual ICollection<t_student> t_students { get; set; } = new List<t_student>();
 }
