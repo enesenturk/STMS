@@ -8,6 +8,7 @@ using NS.STMS.Business.Modules.SystemTables.EntityPropertySettings;
 using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.Business.Modules.SystemTables.Managers.Concrete;
 using NS.STMS.Business.Modules.SystemTables.Mappings;
+using NS.STMS.Business.Modules.SystemTables.Rules;
 using NS.STMS.Business.Modules.Users.Managers.Abstract;
 using NS.STMS.Business.Modules.Users.Managers.Concrete;
 using NS.STMS.Business.Modules.Users.Mappings;
@@ -25,6 +26,7 @@ namespace NS.STMS.API.Extentions
 
 		public static void BindDataAccess(this IServiceCollection services)
 		{
+
 			#region GradeLectures
 
 			services.AddSingleton<IGradeDal, EfGradeDal>();
@@ -39,6 +41,7 @@ namespace NS.STMS.API.Extentions
 			services.AddSingleton<ICountryDal, EfCountryDal>();
 			services.AddSingleton<ICountyDal, EfCountyDal>();
 			services.AddSingleton<IDifficultyLevelDal, EfDifficultyLevelDal>();
+			services.AddSingleton<ILanguageDal, EfLanguageDal>();
 			services.AddSingleton<IPropertyDal, EfPropertyDal>();
 			services.AddSingleton<IPropertyTypeDal, EfPropertyTypeDal>();
 
@@ -50,6 +53,7 @@ namespace NS.STMS.API.Extentions
 			services.AddSingleton<IStudentDal, EfStudentDal>();
 
 			#endregion
+
 		}
 
 		public static void BindManagers(this IServiceCollection services)
@@ -98,6 +102,15 @@ namespace NS.STMS.API.Extentions
 			IMapper mapper = mapperConfig.CreateMapper();
 			services.AddSingleton(mapper);
 
+		}
+
+		public static void BindBusinessRules(this IServiceCollection services)
+		{
+			#region SystemTables
+
+			services.AddSingleton<LanguageBusinessRules>();
+
+			#endregion
 		}
 
 		public static void RegisterEntityProperties(this IApplicationBuilder app)

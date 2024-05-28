@@ -10,7 +10,7 @@ namespace NS.STMS.Core.DataAccess
 
 		TEntity Add(TEntity entity, int createdBy);
 
-		List<TEntity> AddRange(List<TEntity> entities);
+		List<TEntity> AddRange(List<TEntity> entities, int createdBy);
 
 		#endregion
 
@@ -36,19 +36,17 @@ namespace NS.STMS.Core.DataAccess
 
 		K Max<K>(Expression<Func<TEntity, K>> OrderBy, Expression<Func<TEntity, bool>> filter = null);
 
-		bool IsUniqueEntity(Expression<Func<TEntity, bool>> filter);
-
 		#endregion
 
 		#region Update
 
-		TEntity Update(TEntity entity);
+		TEntity Update(TEntity entity, int updatedBy);
 
-		void UpdateOneField<K>(TEntity entity, Expression<Func<TEntity, K>> field);
+		void UpdateOneField<K>(TEntity entity, Expression<Func<TEntity, K>> field, int updatedBy);
 
-		void BulkUpdateForOneField<K>(List<TEntity> entities, Expression<Func<TEntity, K>> field);
+		void BulkUpdateForOneField<K>(List<TEntity> entities, Expression<Func<TEntity, K>> field, int updatedBy);
 
-		void UpdateRange(List<TEntity> entities);
+		void UpdateRange(List<TEntity> entities, int updatedBy);
 
 		#endregion
 

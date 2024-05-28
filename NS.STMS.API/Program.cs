@@ -10,9 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.BindDataAccess();
-builder.Services.BindManagers();
 builder.Services.BindMapper();
+builder.Services.BindDataAccess();
+builder.Services.BindBusinessRules();
+builder.Services.BindManagers();
 
 builder.Services.AddControllers().AddJsonOptions(opts =>
 {

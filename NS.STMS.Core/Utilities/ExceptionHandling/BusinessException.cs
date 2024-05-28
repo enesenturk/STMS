@@ -1,15 +1,15 @@
 ﻿namespace NS.STMS.Core.Utilities.ExceptionHandling
 {
 	[Serializable]
-	public class CoreException : Exception
+	public class BusinessException : Exception
 	{
 
-		public CoreException()
+		public BusinessException()
 		{
 
 		}
 
-		public CoreException(string message, string code = "")
+		public BusinessException(string message, string code = "")
 			: base(String.Format(message), new Exception($"{code}"))
 		{
 

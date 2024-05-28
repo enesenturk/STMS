@@ -1,30 +1,36 @@
 ﻿using NS.STMS.DTO;
 using NS.STMS.DTO.SystemTables.DifficultyLevel;
+using NS.STMS.DTO.SystemTables.Language;
 
 namespace NS.STMS.Business.Modules.SystemTables.Managers.Abstract
 {
-    public interface ISystemTableManager
-    {
+	public interface ISystemTableManager
+	{
 
-        #region Create
+		#region Create
 
-        #endregion
+		void CreateLanguage(CreateLanguageRequestDto request);
 
-        #region Read
+		#endregion
 
-        List<DifficultyLevelResponseDto> GetDifficultyLevels();
-        List<JSonDto> GetCities();
-        List<JSonDto> GetCounties(int cityId);
+		#region Read
 
-        #endregion
+		List<JSonDto> GetCities();
+		List<JSonDto> GetCounties(int cityId);
+		List<DifficultyLevelResponseDto> GetDifficultyLevels();
+		List<LanguageResponseDto> GetLanguages();
 
-        #region Update
+		#endregion
 
-        #endregion
+		#region Update
 
-        #region Delete
+		void UpdateLanguage(UpdateLanguageRequestDto request);
 
-        #endregion
+		#endregion
 
-    }
+		#region Delete
+
+		#endregion
+
+	}
 }

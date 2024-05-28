@@ -1,4 +1,5 @@
-﻿using PostSharp.Aspects;
+﻿using NS.STMS.Core.Utilities.ExceptionHandling;
+using PostSharp.Aspects;
 
 namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
 {
@@ -11,7 +12,7 @@ namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
             base.OnGetValue(args);
 
             if (args.Value is null || (int)args.Value is 0)
-                throw new Exception("Something went wrong while setting system properties. Please contact to the system admin.");
+                throw new FatalException("Error_Ocurred");
         }
 
     }

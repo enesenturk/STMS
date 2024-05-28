@@ -97,7 +97,7 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 			{
 				t_student student = _studentDal.Get(x => x.t_user_id == loginUser.id);
 
-				if (student is null) throw new CoreException("Please contact to the system admin.");
+				if (student is null) throw new FatalException("Error_Ocurred");
 
 				response.IsStudent = true;
 				response.Student = new StudentLoginResponseDto

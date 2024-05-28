@@ -69,7 +69,7 @@ namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
 
 		private static void ThrowError()
 		{
-			throw new CoreException("Something went wrong while setting system properties. Please contact to the system admin.");
+			throw new FatalException("Error_Ocurred");
 		}
 
 	}

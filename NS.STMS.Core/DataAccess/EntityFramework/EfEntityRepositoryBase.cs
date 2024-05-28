@@ -27,13 +27,19 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public List<TEntity> AddRange(List<TEntity> entities)
+		public List<TEntity> AddRange(List<TEntity> entities, int createdBy)
 		{
 			int takeCount = 999;
 
 			int counter = (entities.Count % takeCount) == 0
 				? (entities.Count / takeCount)
 				: (entities.Count / takeCount) + 1;
+
+			entities.ForEach(e =>
+			{
+				e.created_at = DateTimeHelper.GetNow();
+				e.created_by = createdBy;
+			});
 
 			for (int i = 0; i < counter; i++)
 			{
@@ -55,8 +61,8 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		#region Read
 
-		public List<TEntity> GetList<T>(
-			Expression<Func<TEntity, T>> OrderBy,
+		public List<TEntity> GetList<K>(
+			Expression<Func<TEntity, K>> OrderBy,
 			Expression<Func<TEntity, bool>> filter = null)
 		{
 			using (var context = new TContext())
@@ -92,8 +98,8 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			using (var context = new TContext())
 			{
 				return filter is null
-					? context.Set<TEntity>().Distinct().OrderBy(x => x.id).ToList()
-					: context.Set<TEntity>().Where(filter).Distinct().OrderBy(x => x.id).ToList();
+					? context.Set<TEntity>().DeletedFilter().Distinct().OrderBy(x => x.id).ToList()
+					: context.Set<TEntity>().DeletedFilter().Where(filter).Distinct().OrderBy(x => x.id).ToList();
 			}
 		}
 
@@ -102,8 +108,8 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			using (var context = new TContext())
 			{
 				return filter is null
-					? context.Set<TEntity>().Count()
-					: context.Set<TEntity>().Count(filter);
+					? context.Set<TEntity>().DeletedFilter().Count()
+					: context.Set<TEntity>().DeletedFilter().Count(filter);
 			}
 		}
 
@@ -119,7 +125,7 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		{
 			using (var context = new TContext())
 			{
-				var query = context.Set<TEntity>().IncludeProperties(navProperties);
+				var query = context.Set<TEntity>().DeletedFilter().IncludeProperties(navProperties);
 				return query.FirstOrDefault(filter);
 			}
 		}
@@ -129,18 +135,8 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			using (var context = new TContext())
 			{
 				return filter is null
-					? context.Set<TEntity>().Max(OrderBy)
-					: context.Set<TEntity>().Where(filter).Max(OrderBy);
-			}
-		}
-
-		public bool IsUniqueEntity(Expression<Func<TEntity, bool>> filter)
-		{
-			using (var context = new TContext())
-			{
-				TEntity entity = Get(filter);
-
-				return entity is null;
+					? context.Set<TEntity>().DeletedFilter().Max(OrderBy)
+					: context.Set<TEntity>().DeletedFilter().Where(filter).Max(OrderBy);
 			}
 		}
 
@@ -148,8 +144,11 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		#region Update
 
-		public TEntity Update(TEntity entity)
+		public TEntity Update(TEntity entity, int updatedBy)
 		{
+			entity.created_at = DateTimeHelper.GetNow();
+			entity.created_by = updatedBy;
+
 			using (var context = new TContext())
 			{
 				var updatedEntity = context.Entry(entity);
@@ -159,8 +158,11 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public void UpdateOneField<K>(TEntity entity, Expression<Func<TEntity, K>> field)
+		public void UpdateOneField<K>(TEntity entity, Expression<Func<TEntity, K>> field, int updatedBy)
 		{
+			entity.created_at = DateTimeHelper.GetNow();
+			entity.created_by = updatedBy;
+
 			using (var context = new TContext())
 			{
 				context.Set<TEntity>().Attach(entity);
@@ -169,8 +171,14 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public void BulkUpdateForOneField<K>(List<TEntity> entities, Expression<Func<TEntity, K>> field)
+		public void BulkUpdateForOneField<K>(List<TEntity> entities, Expression<Func<TEntity, K>> field, int updatedBy)
 		{
+			entities.ForEach(e =>
+			{
+				e.created_at = DateTimeHelper.GetNow();
+				e.created_by = updatedBy;
+			});
+
 			using (var context = new TContext())
 			{
 				try
@@ -193,8 +201,14 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public void UpdateRange(List<TEntity> entities)
+		public void UpdateRange(List<TEntity> entities, int updatedBy)
 		{
+			entities.ForEach(e =>
+			{
+				e.created_at = DateTimeHelper.GetNow();
+				e.created_by = updatedBy;
+			});
+
 			using (var context = new TContext())
 			{
 				try

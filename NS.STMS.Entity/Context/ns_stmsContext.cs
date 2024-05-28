@@ -5,16 +5,18 @@ namespace NS.STMS.Entity.Context;
 
 public partial class ns_stmsContext : DbContext
 {
-    public ns_stmsContext()
-    {
-    }
+	public ns_stmsContext()
+	{
+		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+	}
 
-    public ns_stmsContext(DbContextOptions<ns_stmsContext> options)
-        : base(options)
-    {
-    }
+	public ns_stmsContext(DbContextOptions<ns_stmsContext> options)
+		: base(options)
+	{
+		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+	}
 
-    public virtual DbSet<t_city> t_cities { get; set; }
+	public virtual DbSet<t_city> t_cities { get; set; }
 
     public virtual DbSet<t_country> t_countries { get; set; }
 

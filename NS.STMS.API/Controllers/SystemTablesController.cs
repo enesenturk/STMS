@@ -3,10 +3,11 @@ using NS.STMS.API.Models;
 using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.SystemTables.DifficultyLevel;
+using NS.STMS.DTO.SystemTables.Language;
 
 namespace NS.STMS.API.Controllers
 {
-    [ApiController]
+	[ApiController]
 	public class SystemTablesController : ControllerBase
 	{
 
@@ -23,22 +24,21 @@ namespace NS.STMS.API.Controllers
 
 		#region Create
 
-		#endregion
-
-		#region Read
-
-		[HttpGet]
-		[Route("/api/DifficultyLevels")]
-		public OkObjectResult DifficultyLevels()
+		[HttpPost]
+		[Route("/api/Language")]
+		public OkObjectResult Languages(CreateLanguageRequestDto request)
 		{
-			List<DifficultyLevelResponseDto> response = _systemTableManager.GetDifficultyLevels();
+			_systemTableManager.CreateLanguage(request);
 
 			return Ok(new BaseResponseModel
 			{
-				Type = "S",
-				ResponseModel = response
+				Type = "S"
 			});
 		}
+
+		#endregion
+
+		#region Read
 
 		[HttpGet]
 		[Route("/api/Cities")]
@@ -66,9 +66,47 @@ namespace NS.STMS.API.Controllers
 			});
 		}
 
+		[HttpGet]
+		[Route("/api/DifficultyLevels")]
+		public OkObjectResult DifficultyLevels()
+		{
+			List<DifficultyLevelResponseDto> response = _systemTableManager.GetDifficultyLevels();
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = response
+			});
+		}
+
+		[HttpGet]
+		[Route("/api/Languages")]
+		public OkObjectResult Languages()
+		{
+			List<LanguageResponseDto> response = _systemTableManager.GetLanguages();
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = response
+			});
+		}
+
 		#endregion
 
 		#region Update
+
+		[HttpPut]
+		[Route("/api/Language")]
+		public OkObjectResult Languages(UpdateLanguageRequestDto request)
+		{
+			_systemTableManager.UpdateLanguage(request);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S"
+			});
+		}
 
 		#endregion
 
