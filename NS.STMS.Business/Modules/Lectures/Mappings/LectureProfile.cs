@@ -10,8 +10,8 @@ namespace NS.STMS.Business.Modules.Lectures.Mappings
         {
 
             CreateMap<t_lecture, JSonDto>()
-                .ForMember(dest => dest.key, opt => opt.MapFrom(src => src.id))
-                .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.name));
+                .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.id))
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.name));
 
         }
     }

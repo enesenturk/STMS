@@ -58,15 +58,15 @@ namespace NS.STMS.API.Controllers
 
 			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
 
-			response.grades = grades;
-			response.lectures = lectures;
+			response.Grades = grades;
+			response.Lectures = lectures;
 
 			gradeLectures.ForEach(x =>
 			{
-				response.gradeLectures.Add(new GradeLectureResponseDto
+				response.GradeLectures.Add(new GradeLectureResponseDto
 				{
-					gradeId = x.t_grade_id,
-					lectureId = x.t_lecture_id
+					GradeId = x.t_grade_id,
+					LectureId = x.t_lecture_id
 				});
 			});
 

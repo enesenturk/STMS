@@ -37,8 +37,8 @@ namespace NS.STMS.Business.Modules.Lectures.Managers.Concrete
 		{
 			return _gradeLectureDal.Add(new t_grade_lecture
 			{
-				t_grade_id = requestDto.gradeId,
-				t_lecture_id = requestDto.lectureId
+				t_grade_id = requestDto.GradeId,
+				t_lecture_id = requestDto.LectureId
 			}, _id);
 		}
 

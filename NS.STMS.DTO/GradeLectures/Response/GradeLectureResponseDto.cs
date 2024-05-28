@@ -3,8 +3,8 @@
 	public class GradeLectureResponseDto
 	{
 
-		public int gradeId { get; set; }
-		public int lectureId { get; set; }
+		public int GradeId { get; set; }
+		public int LectureId { get; set; }
 
 	}
 }

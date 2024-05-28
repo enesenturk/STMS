@@ -38,25 +38,25 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 		{
 			try
 			{
-				string hash = PasswordHasher.HashPasword(requestDto.password, out var salt);
+				string hash = PasswordHasher.HashPasword(requestDto.Password, out var salt);
 
 				t_user user = _userDal.Add(new t_user
 				{
-					email = requestDto.email,
+					email = requestDto.Email,
 					password = hash,
 					password_salt = salt,
-					name = requestDto.name,
-					surname = requestDto.surname,
-					date_of_birth = DateOnly.FromDateTime(requestDto.dateOfBirth),
-					t_county_id = requestDto.countyId,
+					name = requestDto.Name,
+					surname = requestDto.Surname,
+					date_of_birth = DateOnly.FromDateTime(requestDto.DateOfBirth),
+					t_county_id = requestDto.CountyId,
 					t_property_id_user_type = UserTypes.Student
 				}, _id);
 
 				_studentDal.Add(new t_student
 				{
 					t_user_id = user.id,
-					t_grade_id = requestDto.gradeId,
-					school_name = requestDto.schoolName,
+					t_grade_id = requestDto.GradeId,
+					school_name = requestDto.SchoolName,
 				}, _id);
 			}
 			catch (Exception e)
@@ -71,25 +71,25 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		public LoginResponseDto Login(LoginRequestDto requestDto)
 		{
-			t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.email, new string[] { "t_county" });
+			t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.Email, new string[] { "t_county" });
 
 			if (loginUser is null) return null;
 
-			bool verified = PasswordHasher.VerifyPassword(requestDto.password, loginUser.password, loginUser.password_salt);
+			bool verified = PasswordHasher.VerifyPassword(requestDto.Password, loginUser.password, loginUser.password_salt);
 
 			if (!verified) return null;
 
 			LoginResponseDto response = new LoginResponseDto
 			{
-				email = loginUser.email,
-				name = loginUser.name,
-				surname = loginUser.surname,
-				dateOfBirth = loginUser.date_of_birth,
-				imageBase64 = loginUser.image_base64,
-				address = new AddressDto
+				Email = loginUser.email,
+				Name = loginUser.name,
+				Surname = loginUser.surname,
+				DateOfBirth = loginUser.date_of_birth,
+				ImageBase64 = loginUser.image_base64,
+				Address = new AddressDto
 				{
-					countyId = loginUser.t_county_id,
-					cityId = loginUser.t_county.t_city_id
+					CountyId = loginUser.t_county_id,
+					CityId = loginUser.t_county.t_city_id
 				}
 			};
 
@@ -99,11 +99,11 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 				if (student is null) throw new CoreException("Please contact to the system admin.");
 
-				response.isStudent = true;
-				response.student = new StudentLoginResponseDto
+				response.IsStudent = true;
+				response.Student = new StudentLoginResponseDto
 				{
-					gradeId = student.t_grade_id,
-					schoolName = student.school_name
+					GradeId = student.t_grade_id,
+					SchoolName = student.school_name
 				};
 			}
 			else if (loginUser.t_property_id_user_type == UserTypes.Teacher)

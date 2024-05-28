@@ -5,19 +5,19 @@ namespace NS.STMS.DTO.Authentication.Response
 	public class LoginResponseDto
 	{
 
-		public string name { get; set; }
-		public string surname { get; set; }
-		public string email { get; set; }
+		public string Name { get; set; }
+		public string Surname { get; set; }
+		public string Email { get; set; }
 
-		public DateOnly dateOfBirth { get; set; }
+		public DateOnly DateOfBirth { get; set; }
 
-		public string imageBase64 { get; set; }
+		public string ImageBase64 { get; set; }
 
-		public AddressDto address { get; set; }
+		public AddressDto Address { get; set; }
 
-		public bool isStudent { get; set; }
+		public bool IsStudent { get; set; }
 
-		public StudentLoginResponseDto student { get; set; }
+		public StudentLoginResponseDto Student { get; set; }
 
 	}
 }

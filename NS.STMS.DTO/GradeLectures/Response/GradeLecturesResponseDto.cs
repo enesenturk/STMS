@@ -2,9 +2,9 @@
 {
 	public class GradeLecturesResponseDto
 	{
-		public List<JSonDto> lectures { get; set; }
-		public List<JSonDto> grades { get; set; }
+		public List<JSonDto> Lectures { get; set; }
+		public List<JSonDto> Grades { get; set; }
 
-		public List<GradeLectureResponseDto> gradeLectures { get; set; } = new List<GradeLectureResponseDto>();
+		public List<GradeLectureResponseDto> GradeLectures { get; set; } = new List<GradeLectureResponseDto>();
 	}
 }
