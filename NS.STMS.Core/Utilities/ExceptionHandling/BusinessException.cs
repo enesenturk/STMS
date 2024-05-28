@@ -10,7 +10,7 @@
 		}
 
 		public BusinessException(string message, string code = "")
-			: base(String.Format(message), new Exception($"{code}"))
+			: base(string.Format(message), new Exception($"{code}"))
 		{
 
 		}

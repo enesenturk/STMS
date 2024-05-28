@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc.Filters;
 using NS.STMS.API.Extentions;
 using NS.STMS.API.Models;
+using NS.STMS.Core.Utilities.ExceptionHandling;
 using System.Net;
 
 namespace NS.STMS.API.Filters
@@ -10,21 +12,23 @@ namespace NS.STMS.API.Filters
 
 		public override Task OnExceptionAsync(ExceptionContext context)
 		{
-			BaseResponseModel exceptionResponse = GetResponse(context);
+			(HttpStatusCode, BaseResponseModel) info = GetResponseInfo(context);
 
-			context.ReturnContext(HttpStatusCode.Conflict, exceptionResponse);
+			context.ReturnContext(info.Item1, info.Item2);
 
 			return Task.CompletedTask;
 		}
 
 		public override void OnException(ExceptionContext context)
 		{
-			BaseResponseModel exceptionResponse = GetResponse(context);
+			(HttpStatusCode, BaseResponseModel) info = GetResponseInfo(context);
 
-			context.ReturnContext(HttpStatusCode.Conflict, exceptionResponse);
+			context.ReturnContext(info.Item1, info.Item2);
 		}
 
-		public BaseResponseModel GetResponse(ExceptionContext context)
+		#region extracted methods
+
+		private (HttpStatusCode, BaseResponseModel) GetResponseInfo(ExceptionContext context)
 		{
 			BaseResponseModel exceptionResponse = new BaseResponseModel
 			{
@@ -32,47 +36,38 @@ namespace NS.STMS.API.Filters
 				Type = "E"
 			};
 
-			//Exception exception = context.Exception;
-			//Type ExceptionType = exception.GetType();
+			Type exceptionType = GetExceptionType(context);
 
-			//bool isValidationException = ExceptionType.name == "ValidationException";
-			//bool isCoreException = ExceptionType.name == "CoreException";
-			//bool isAuthorizationException = ExceptionType.name == "AuthorizationException";
-			//bool isDateFormatException = ExceptionType.name == "FormatException" && exception.ToString().Contains("DateTime");
+			bool isValidationException = exceptionType.Name == nameof(ValidationException);
+			bool isBusinessException = exceptionType.Name == nameof(BusinessException);
+			bool isAuthorizationException = exceptionType.Name == nameof(AuthorizationException);
+			bool isAuthenticationException = exceptionType.Name == nameof(AuthenticationException);
 
-			//if (isDateFormatException)
-			//{
-			//	string errorCode = "96";
+			bool notMyException = !isValidationException && !isBusinessException && !isAuthorizationException && !isAuthenticationException;
+			if (notMyException)
+			{
+				exceptionResponse.Message = "Error_Ocurred";
+			}
 
-			//	exceptionResponse.ErrorCode = errorCode;
-			//}
-			//else if (isValidationException)
-			//{
-			//	string errorCode = "97";
+			HttpStatusCode code =
+				isValidationException ? HttpStatusCode.BadRequest :
+				isBusinessException ? HttpStatusCode.UnprocessableEntity :
+				isAuthorizationException ? HttpStatusCode.Forbidden :
+				isAuthenticationException ? HttpStatusCode.Unauthorized :
+				HttpStatusCode.InternalServerError;
 
-			//	exceptionResponse.ErrorCode = errorCode;
-			//}
-			//else if (isCoreException)
-			//{
-			//	string errorCode = exception.InnerException.Message == "" ? "98" : exception.InnerException.Message;
-
-			//	exceptionResponse.ErrorCode = errorCode;
-			//}
-			//else if (isAuthorizationException)
-			//{
-			//	exceptionResponse.Message = exception.Message;
-			//}
-			//else
-			//{
-			//	string errorCode = "99";
-
-			//	exceptionResponse.ErrorCode = errorCode;
-			//	//exceptionResponse.Message = "An error occurred. Please contact to the system admin.";
-			//	exceptionResponse.Message = $"ExceptionMessage: {exception.Message}";
-			//}
-
-			return exceptionResponse;
+			return (code, exceptionResponse);
 		}
+
+		public Type GetExceptionType(ExceptionContext context)
+		{
+			Exception exception = context.Exception;
+			Type ExceptionType = exception.GetType();
+
+			return ExceptionType;
+		}
+
+		#endregion
 
 	}
 }

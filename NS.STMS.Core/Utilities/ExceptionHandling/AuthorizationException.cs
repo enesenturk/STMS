@@ -1,20 +1,19 @@
 ﻿namespace NS.STMS.Core.Utilities.ExceptionHandling
 {
 	[Serializable]
-	public class FatalException : Exception
+	public class AuthorizationException : Exception
 	{
 
-		public FatalException()
+		public AuthorizationException()
 		{
 
 		}
 
-		public FatalException(string message, string code = "")
+		public AuthorizationException(string message, string code = "")
 			: base(string.Format(message), new Exception($"{code}"))
 		{
 
 		}
 
 	}
-
 }
