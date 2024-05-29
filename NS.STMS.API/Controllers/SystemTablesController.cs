@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
 using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.DTO;
+using NS.STMS.DTO.SystemTables.Address;
 using NS.STMS.DTO.SystemTables.DifficultyLevel;
 using NS.STMS.DTO.SystemTables.Language;
 
@@ -46,10 +47,15 @@ namespace NS.STMS.API.Controllers
 		{
 			List<JSonDto> response = _systemTableManager.GetCities();
 
+			GetCitiesResponseDto model = new GetCitiesResponseDto
+			{
+				Cities = response
+			};
+
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 
@@ -59,10 +65,15 @@ namespace NS.STMS.API.Controllers
 		{
 			List<JSonDto> response = _systemTableManager.GetCounties(cityId);
 
+			GetCountiesResponseDto model = new GetCountiesResponseDto
+			{
+				Counties = response
+			};
+
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 
@@ -70,12 +81,17 @@ namespace NS.STMS.API.Controllers
 		[Route("/api/DifficultyLevels")]
 		public OkObjectResult DifficultyLevels()
 		{
-			List<DifficultyLevelResponseDto> response = _systemTableManager.GetDifficultyLevels();
+			List<DifficultyLevelDto> response = _systemTableManager.GetDifficultyLevels();
+
+			GetDifficultyLevelsResponseDto model = new GetDifficultyLevelsResponseDto
+			{
+				DifficultyLevels = response
+			};
 
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 
@@ -83,12 +99,17 @@ namespace NS.STMS.API.Controllers
 		[Route("/api/Languages")]
 		public OkObjectResult Languages()
 		{
-			List<LanguageResponseDto> response = _systemTableManager.GetLanguages();
+			List<LanguageDto> response = _systemTableManager.GetLanguages();
+
+			GetLanguagesResponseDto model = new GetLanguagesResponseDto
+			{
+				Languages = response
+			};
 
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 

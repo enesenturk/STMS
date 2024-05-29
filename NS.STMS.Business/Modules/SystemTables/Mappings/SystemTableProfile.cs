@@ -20,9 +20,9 @@ namespace NS.STMS.Business.Modules.SystemTables.Mappings
 				.ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.id))
 				.ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.name));
 
-			CreateMap<t_difficulty_level, DifficultyLevelResponseDto>().IgnoreAllVirtual();
+			CreateMap<t_difficulty_level, DifficultyLevelDto>().IgnoreAllVirtual();
 
-			CreateMap<t_language, LanguageResponseDto>()
+			CreateMap<t_language, LanguageDto>()
 				.ForMember(dest => dest.LanguageKey, opt => opt.MapFrom(src => src.language_key))
 				.ForMember(dest => dest.trTR, opt => opt.MapFrom(src => src.tr_TR))
 				.ForMember(dest => dest.enUS, opt => opt.MapFrom(src => src.en_US));

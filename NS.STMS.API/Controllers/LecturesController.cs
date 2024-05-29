@@ -2,10 +2,11 @@
 using NS.STMS.API.Models;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
+using NS.STMS.DTO.GradeLectures.Response;
 
 namespace NS.STMS.API.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class LecturesController : ControllerBase
 	{
@@ -40,10 +41,15 @@ namespace NS.STMS.API.Controllers
 		{
 			List<JSonDto> response = _lectureManager.GetLectures();
 
+			GetLecturesResponseDto model = new GetLecturesResponseDto
+			{
+				Lectures = response
+			};
+
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 

@@ -17,8 +17,8 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Abstract
 
 		List<JSonDto> GetCities();
 		List<JSonDto> GetCounties(int cityId);
-		List<DifficultyLevelResponseDto> GetDifficultyLevels();
-		List<LanguageResponseDto> GetLanguages();
+		List<DifficultyLevelDto> GetDifficultyLevels();
+		List<LanguageDto> GetLanguages();
 
 		#endregion
 

@@ -88,16 +88,16 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Concrete
 				 );
 		}
 
-		public List<DifficultyLevelResponseDto> GetDifficultyLevels()
+		public List<DifficultyLevelDto> GetDifficultyLevels()
 		{
-			return _mapper.Map<List<DifficultyLevelResponseDto>>(
+			return _mapper.Map<List<DifficultyLevelDto>>(
 				 _difficultyLevelDal.GetList(x => x.id)
 				 );
 		}
 
-		public List<LanguageResponseDto> GetLanguages()
+		public List<LanguageDto> GetLanguages()
 		{
-			return _mapper.Map<List<LanguageResponseDto>>(
+			return _mapper.Map<List<LanguageDto>>(
 				 _languageDal.GetList(x => x.id)
 				 );
 		}

@@ -1,6 +1,6 @@
 ﻿namespace NS.STMS.DTO.SystemTables.DifficultyLevel
 {
-	public class DifficultyLevelResponseDto
+	public class DifficultyLevelDto
 	{
 
 		public string Id { get; set; }

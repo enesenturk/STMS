@@ -1,6 +1,6 @@
 ﻿namespace NS.STMS.DTO.SystemTables.Language
 {
-	public class LanguageResponseDto
+	public class LanguageDto
 	{
 
 		public string LanguageKey { get; set; }

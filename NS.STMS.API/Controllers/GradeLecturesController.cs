@@ -2,6 +2,7 @@
 using NS.STMS.API.Models;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
+using NS.STMS.DTO.GradeLectures;
 using NS.STMS.DTO.GradeLectures.Request;
 using NS.STMS.DTO.GradeLectures.Response;
 using NS.STMS.Entity.Context;
@@ -56,14 +57,14 @@ namespace NS.STMS.API.Controllers
 			List<JSonDto> grades = _gradeManager.GetGrades();
 			List<t_grade_lecture> gradeLectures = _gradeLectureManager.GetGradeLectures();
 
-			GradeLecturesResponseDto response = new GradeLecturesResponseDto();
+			GetGradeLecturesResponseDto response = new GetGradeLecturesResponseDto();
 
 			response.Grades = grades;
 			response.Lectures = lectures;
 
 			gradeLectures.ForEach(x =>
 			{
-				response.GradeLectures.Add(new GradeLectureResponseDto
+				response.GradeLectures.Add(new GradeLectureDto
 				{
 					GradeId = x.t_grade_id,
 					LectureId = x.t_lecture_id
