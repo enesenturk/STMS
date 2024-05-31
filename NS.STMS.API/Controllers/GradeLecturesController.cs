@@ -91,6 +91,24 @@ namespace NS.STMS.API.Controllers
 			});
 		}
 
+		[HttpGet]
+		[Route("/api/GradesAndLectures")]
+		public OkObjectResult GradesAndLectures()
+		{
+			List<JSonDto> grades = _gradeManager.GetGrades();
+			List<JSonDto> lectures = _lectureManager.GetLectures();
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S",
+				ResponseModel = new GetGradesAndLecturesResponseDto
+				{
+					Grades = grades,
+					Lectures = lectures
+				}
+			});
+		}
+
 		#endregion
 
 		#region Update

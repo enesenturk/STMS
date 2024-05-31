@@ -69,7 +69,7 @@ namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
 
 		private static void ThrowError()
 		{
-			throw new FatalException("Error_Ocurred");
+			throw new FatalException();
 		}
 
 	}

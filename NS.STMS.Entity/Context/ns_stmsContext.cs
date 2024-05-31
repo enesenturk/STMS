@@ -28,8 +28,6 @@ public partial class ns_stmsContext : DbContext
 
     public virtual DbSet<t_grade_lecture> t_grade_lectures { get; set; }
 
-    public virtual DbSet<t_language> t_languages { get; set; }
-
     public virtual DbSet<t_lecture> t_lectures { get; set; }
 
     public virtual DbSet<t_property> t_properties { get; set; }
@@ -145,25 +143,6 @@ public partial class ns_stmsContext : DbContext
                 .HasForeignKey(d => d.t_lecture_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("t_grade_lecture_t_lecture_id_fkey");
-        });
-
-        modelBuilder.Entity<t_language>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("pk_t_language");
-
-            entity.ToTable("t_language");
-
-            entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
-            entity.Property(e => e.en_US)
-                .IsRequired()
-                .HasMaxLength(500);
-            entity.Property(e => e.language_key)
-                .IsRequired()
-                .HasMaxLength(50);
-            entity.Property(e => e.tr_TR)
-                .IsRequired()
-                .HasMaxLength(500);
-            entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
         });
 
         modelBuilder.Entity<t_lecture>(entity =>

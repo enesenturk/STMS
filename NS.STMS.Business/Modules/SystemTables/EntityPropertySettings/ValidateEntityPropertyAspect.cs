@@ -12,7 +12,7 @@ namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
             base.OnGetValue(args);
 
             if (args.Value is null || (int)args.Value is 0)
-                throw new FatalException("Error_Ocurred");
+                throw new FatalException();
         }
 
     }

@@ -9,6 +9,7 @@
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="NS.STMS.Resources.Language" Version="0.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,11 @@
     <ProjectReference Include="..\NS.STMS.DTO\NS.STMS.DTO.csproj" />
     <ProjectReference Include="..\NS.STMS.Entity\NS.STMS.Entity.csproj" />
     <ProjectReference Include="..\NS.STMS.Settings\NS.STMS.Settings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\SystemTables\Rules\" />
+    <Folder Include="Modules\SystemTables\Validations\FluentValidation\" />
   </ItemGroup>
 
 </Project>

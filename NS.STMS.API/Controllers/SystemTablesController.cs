@@ -4,7 +4,6 @@ using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.SystemTables.Address;
 using NS.STMS.DTO.SystemTables.DifficultyLevel;
-using NS.STMS.DTO.SystemTables.Language;
 
 namespace NS.STMS.API.Controllers
 {
@@ -24,18 +23,6 @@ namespace NS.STMS.API.Controllers
 		#endregion
 
 		#region Create
-
-		[HttpPost]
-		[Route("/api/Language")]
-		public OkObjectResult Languages(CreateLanguageRequestDto request)
-		{
-			_systemTableManager.CreateLanguage(request);
-
-			return Ok(new BaseResponseModel
-			{
-				Type = "S"
-			});
-		}
 
 		#endregion
 
@@ -95,39 +82,9 @@ namespace NS.STMS.API.Controllers
 			});
 		}
 
-		[HttpGet]
-		[Route("/api/Languages")]
-		public OkObjectResult Languages()
-		{
-			List<LanguageDto> response = _systemTableManager.GetLanguages();
-
-			GetLanguagesResponseDto model = new GetLanguagesResponseDto
-			{
-				Languages = response
-			};
-
-			return Ok(new BaseResponseModel
-			{
-				Type = "S",
-				ResponseModel = model
-			});
-		}
-
 		#endregion
 
 		#region Update
-
-		[HttpPut]
-		[Route("/api/Language")]
-		public OkObjectResult Languages(UpdateLanguageRequestDto request)
-		{
-			_systemTableManager.UpdateLanguage(request);
-
-			return Ok(new BaseResponseModel
-			{
-				Type = "S"
-			});
-		}
 
 		#endregion
 
