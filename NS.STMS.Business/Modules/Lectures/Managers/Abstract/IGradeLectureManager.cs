@@ -4,29 +4,29 @@ using NS.STMS.Entity.Context;
 
 namespace NS.STMS.Business.Modules.Lectures.Managers.Abstract
 {
-    public interface IGradeLectureManager
-    {
+	public interface IGradeLectureManager
+	{
 
-        #region Create
+		#region Create
 
-        t_grade_lecture CreateGradeLecture(CreateGradeLectureRequestDto requestDto);
+		t_grade_lecture CreateGradeLecture(CreateGradeLectureRequestDto requestDto);
 
-        #endregion
+		#endregion
 
-        #region Read
+		#region Read
 
-        List<t_grade_lecture> GetGradeLectures();
-        List<JSonDto> GetGradeLectures(int gradeId);
+		List<t_grade_lecture> GetGradeLectures(int countryId);
+		List<JSonDto> GetGradeLectures(int countryId, int gradeId);
 
-        #endregion
+		#endregion
 
-        #region Update
+		#region Update
 
-        #endregion
+		#endregion
 
-        #region Delete
+		#region Delete
 
-        #endregion
+		#endregion
 
-    }
+	}
 }

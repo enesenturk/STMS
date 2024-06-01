@@ -4,7 +4,10 @@ namespace NS.STMS.Entity.Context;
 
 public partial class t_lecture : IEntity
 {
+
 	public string language_key { get; set; }
+
+	public int t_country_id { get; set; }
 
 	public virtual t_country t_country { get; set; }
 

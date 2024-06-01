@@ -51,11 +51,12 @@ namespace NS.STMS.API.Controllers
 		#region Read
 
 		[HttpGet]
-		public OkObjectResult GradeLectures()
+		[Route("{countryId}")]
+		public OkObjectResult GradeLectures(int countryId)
 		{
-			List<JSonDto> lectures = _lectureManager.GetLectures();
+			List<JSonDto> lectures = _lectureManager.GetLectures(countryId);
 			List<JSonDto> grades = _gradeManager.GetGrades();
-			List<t_grade_lecture> gradeLectures = _gradeLectureManager.GetGradeLectures();
+			List<t_grade_lecture> gradeLectures = _gradeLectureManager.GetGradeLectures(countryId);
 
 			GetGradeLecturesResponseDto response = new GetGradeLecturesResponseDto();
 
@@ -79,10 +80,10 @@ namespace NS.STMS.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("{gradeId}")]
-		public OkObjectResult GradeLectures(int gradeId)
+		[Route("{countryId}/{gradeId}")]
+		public OkObjectResult GradeLectures(int gradeId, int countryId)
 		{
-			List<JSonDto> response = _gradeLectureManager.GetGradeLectures(gradeId);
+			List<JSonDto> response = _gradeLectureManager.GetGradeLectures(countryId, gradeId);
 
 			return Ok(new BaseResponseModel
 			{
@@ -92,11 +93,11 @@ namespace NS.STMS.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("/api/GradesAndLectures")]
-		public OkObjectResult GradesAndLectures()
+		[Route("/api/GradesAndLectures/{countryId}")]
+		public OkObjectResult GradesAndLectures(int countryId)
 		{
 			List<JSonDto> grades = _gradeManager.GetGrades();
-			List<JSonDto> lectures = _lectureManager.GetLectures();
+			List<JSonDto> lectures = _lectureManager.GetLectures(countryId);
 
 			return Ok(new BaseResponseModel
 			{

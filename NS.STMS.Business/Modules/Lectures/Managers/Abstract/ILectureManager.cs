@@ -2,27 +2,27 @@
 
 namespace NS.STMS.Business.Modules.Lectures.Managers.Abstract
 {
-    public interface ILectureManager
-    {
+	public interface ILectureManager
+	{
 
-        #region Create
+		#region Create
 
-        #endregion
+		#endregion
 
-        #region Read
+		#region Read
 
-        JSonDto GetLecture(int lectureId);
-        List<JSonDto> GetLectures();
+		JSonDto GetLecture(int lectureId);
+		List<JSonDto> GetLectures(int countryId);
 
-        #endregion
+		#endregion
 
-        #region Update
+		#region Update
 
-        #endregion
+		#endregion
 
-        #region Delete
+		#region Delete
 
-        #endregion
+		#endregion
 
-    }
+	}
 }

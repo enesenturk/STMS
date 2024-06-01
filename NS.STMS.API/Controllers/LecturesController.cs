@@ -37,9 +37,10 @@ namespace NS.STMS.API.Controllers
 		#region Read
 
 		[HttpGet]
-		public OkObjectResult Lectures()
+		[Route("{countryId}")]
+		public OkObjectResult Lectures(int countryId)
 		{
-			List<JSonDto> response = _lectureManager.GetLectures();
+			List<JSonDto> response = _lectureManager.GetLectures(countryId);
 
 			GetLecturesResponseDto model = new GetLecturesResponseDto
 			{
@@ -50,19 +51,6 @@ namespace NS.STMS.API.Controllers
 			{
 				Type = "S",
 				ResponseModel = model
-			});
-		}
-
-		[HttpGet]
-		[Route("{lectureId}")]
-		public OkObjectResult Lectures(int lectureId)
-		{
-			JSonDto response = _lectureManager.GetLecture(lectureId);
-
-			return Ok(new BaseResponseModel
-			{
-				Type = "S",
-				ResponseModel = response
 			});
 		}
 

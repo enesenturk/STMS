@@ -40,12 +40,10 @@ namespace NS.STMS.Business.Modules.Lectures.Managers.Concrete
 				);
 		}
 
-		public List<JSonDto> GetLectures()
+		public List<JSonDto> GetLectures(int countryId)
 		{
 			return _mapper.Map<List<JSonDto>>(
-				_lectureDal.GetList(
-					x => x.language_key
-					)
+				_lectureDal.GetList(x => x.language_key, x => x.t_country_id == countryId)
 				);
 		}
 
