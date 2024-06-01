@@ -4,5 +4,6 @@
 	{
 		public int GradeId { get; set; }
 		public int LectureId { get; set; }
+		public int CountryId { get; set; }
 	}
 }

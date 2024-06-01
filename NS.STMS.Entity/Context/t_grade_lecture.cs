@@ -4,8 +4,6 @@ namespace NS.STMS.Entity.Context;
 
 public partial class t_grade_lecture : IEntity
 {
-	public int id { get; set; }
-
 	public int t_grade_id { get; set; }
 
 	public int t_lecture_id { get; set; }
