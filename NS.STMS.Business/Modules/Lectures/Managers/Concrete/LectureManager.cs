@@ -5,59 +5,59 @@ using NS.STMS.DTO;
 
 namespace NS.STMS.Business.Modules.Lectures.Managers.Concrete
 {
-    public class LectureManager : ILectureManager
-    {
+	public class LectureManager : ILectureManager
+	{
 
-        #region CTOR
+		#region CTOR
 
-        private readonly ILectureDal _lectureDal;
+		private readonly ILectureDal _lectureDal;
 
-        private readonly IMapper _mapper;
+		private readonly IMapper _mapper;
 
-        public LectureManager(
-            ILectureDal lectureDal,
+		public LectureManager(
+			ILectureDal lectureDal,
 
-            IMapper mapper
-            )
-        {
-            _lectureDal = lectureDal;
+			IMapper mapper
+			)
+		{
+			_lectureDal = lectureDal;
 
-            _mapper = mapper;
-        }
+			_mapper = mapper;
+		}
 
-        #endregion
+		#endregion
 
-        #region Create
+		#region Create
 
-        #endregion
+		#endregion
 
-        #region Read
+		#region Read
 
-        public JSonDto GetLecture(int lectureId)
-        {
-            return _mapper.Map<JSonDto>(
-                _lectureDal.Get(x => x.id == lectureId)
-                );
-        }
+		public JSonDto GetLecture(int lectureId)
+		{
+			return _mapper.Map<JSonDto>(
+				_lectureDal.Get(x => x.id == lectureId)
+				);
+		}
 
-        public List<JSonDto> GetLectures()
-        {
-            return _mapper.Map<List<JSonDto>>(
-                _lectureDal.GetList(
-                    x => x.name
-                    )
-                );
-        }
+		public List<JSonDto> GetLectures()
+		{
+			return _mapper.Map<List<JSonDto>>(
+				_lectureDal.GetList(
+					x => x.language_key
+					)
+				);
+		}
 
-        #endregion
+		#endregion
 
-        #region Update
+		#region Update
 
-        #endregion
+		#endregion
 
-        #region Delete
+		#region Delete
 
-        #endregion
+		#endregion
 
-    }
+	}
 }
