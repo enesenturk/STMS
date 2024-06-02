@@ -12,6 +12,7 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Concrete
 		#region CTOR
 
 		private readonly ICityDal _cityDal;
+		private readonly ICountryDal _countryDal;
 		private readonly ICountyDal _countyDal;
 		private readonly IDifficultyLevelDal _difficultyLevelDal;
 
@@ -19,6 +20,7 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Concrete
 
 		public SystemTableManager(
 			ICityDal cityDal,
+			ICountryDal countryDal,
 			ICountyDal countyDal,
 			IDifficultyLevelDal difficultyLevelDal,
 
@@ -26,6 +28,7 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Concrete
 			)
 		{
 			_cityDal = cityDal;
+			_countryDal = countryDal;
 			_countyDal = countyDal;
 			_difficultyLevelDal = difficultyLevelDal;
 
@@ -40,10 +43,17 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Concrete
 
 		#region Read
 
-		public List<JSonDto> GetCities()
+		public List<JSonDto> GetCountries()
 		{
 			return _mapper.Map<List<JSonDto>>(
-				 _cityDal.GetList(x => x.name)
+				 _countryDal.GetList(x => x.name)
+				 );
+		}
+
+		public List<JSonDto> GetCities(int countryId)
+		{
+			return _mapper.Map<List<JSonDto>>(
+				 _cityDal.GetList(x => x.name, x => x.t_country_id == countryId)
 				 );
 		}
 

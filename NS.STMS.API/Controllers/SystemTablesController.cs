@@ -29,10 +29,10 @@ namespace NS.STMS.API.Controllers
 		#region Read
 
 		[HttpGet]
-		[Route("/api/Cities")]
-		public OkObjectResult Cities()
+		[Route("/api/Cities/{countryId}")]
+		public OkObjectResult Cities(int countryId)
 		{
-			List<JSonDto> response = _systemTableManager.GetCities();
+			List<JSonDto> response = _systemTableManager.GetCities(countryId);
 
 			GetCitiesResponseDto model = new GetCitiesResponseDto
 			{

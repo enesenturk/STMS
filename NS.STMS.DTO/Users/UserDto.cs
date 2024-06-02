@@ -1,6 +1,6 @@
-﻿namespace NS.STMS.DTO.Users.Response
+﻿namespace NS.STMS.DTO.Users
 {
-	public class UserBaseResponseDto
+	public class UserDto
 	{
 
 		public string Name { get; set; }

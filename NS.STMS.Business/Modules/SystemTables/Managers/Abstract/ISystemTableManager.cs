@@ -8,7 +8,8 @@ namespace NS.STMS.Business.Modules.SystemTables.Managers.Abstract
 
 		#region Read
 
-		List<JSonDto> GetCities();
+		List<JSonDto> GetCountries();
+		List<JSonDto> GetCities(int countryId);
 		List<JSonDto> GetCounties(int cityId);
 		List<DifficultyLevelDto> GetDifficultyLevels();
 

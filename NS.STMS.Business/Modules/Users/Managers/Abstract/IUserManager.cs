@@ -1,4 +1,4 @@
-﻿using NS.STMS.DTO.Users.Response;
+﻿using NS.STMS.DTO.Users;
 
 namespace NS.STMS.Business.Modules.Users.Managers.Abstract
 {
@@ -11,7 +11,7 @@ namespace NS.STMS.Business.Modules.Users.Managers.Abstract
 
 		#region Read
 
-		List<UserBaseResponseDto> GetUsers();
+		List<UserDto> GetUsers();
 
 		#endregion
 

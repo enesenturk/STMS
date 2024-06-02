@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using NS.STMS.Business.Modules.Users.Managers.Abstract;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
-using NS.STMS.DTO;
-using NS.STMS.DTO.Users.Response;
+using NS.STMS.DTO.Users;
 
 namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 {
@@ -33,9 +32,9 @@ namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 
 		#region Read
 
-		public List<UserBaseResponseDto> GetUsers()
+		public List<UserDto> GetUsers()
 		{
-			return _mapper.Map<List<UserBaseResponseDto>>(
+			return _mapper.Map<List<UserDto>>(
 				_userDal.GetListWithProperties(
 					x => x.name,
 					new string[] { "t_property_id_user_typeNavigation" },

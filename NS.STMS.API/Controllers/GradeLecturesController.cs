@@ -58,14 +58,14 @@ namespace NS.STMS.API.Controllers
 			List<JSonDto> grades = _gradeManager.GetGrades();
 			List<t_grade_lecture> gradeLectures = _gradeLectureManager.GetGradeLectures(countryId);
 
-			GetGradeLecturesResponseDto response = new GetGradeLecturesResponseDto();
+			GetGradeLecturesResponseDto model = new GetGradeLecturesResponseDto();
 
-			response.Grades = grades;
-			response.Lectures = lectures;
+			model.Grades = grades;
+			model.Lectures = lectures;
 
 			gradeLectures.ForEach(x =>
 			{
-				response.GradeLectures.Add(new GradeLectureDto
+				model.GradeLectures.Add(new GradeLectureDto
 				{
 					GradeId = x.t_grade_id,
 					LectureId = x.t_lecture_id
@@ -75,7 +75,7 @@ namespace NS.STMS.API.Controllers
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = response
+				ResponseModel = model
 			});
 		}
 
@@ -99,14 +99,16 @@ namespace NS.STMS.API.Controllers
 			List<JSonDto> grades = _gradeManager.GetGrades();
 			List<JSonDto> lectures = _lectureManager.GetLectures(countryId);
 
+			GetGradesAndLecturesResponseDto model = new GetGradesAndLecturesResponseDto
+			{
+				Grades = grades,
+				Lectures = lectures
+			};
+
 			return Ok(new BaseResponseModel
 			{
 				Type = "S",
-				ResponseModel = new GetGradesAndLecturesResponseDto
-				{
-					Grades = grades,
-					Lectures = lectures
-				}
+				ResponseModel = model
 			});
 		}
 
