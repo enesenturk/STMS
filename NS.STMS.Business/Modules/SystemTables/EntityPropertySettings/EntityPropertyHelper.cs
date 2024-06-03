@@ -45,7 +45,7 @@ namespace NS.STMS.Business.Modules.SystemTables.EntityPropertySettings
 				Type classType = preferencesAssembly.GetType($"{BusinessAssemblySettings.EntityPropertyNamespace}.{className}");
 
 				if (classType is null)
-					continue;
+					ThrowError();
 
 				string propertyTypeName = classType.Name;
 				int propertyTypeId = Convert.ToInt32(typeof(EntityPropertyType).GetProperty(propertyTypeName).GetValue(null, null));

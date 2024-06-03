@@ -7,7 +7,7 @@
 		{
 			get
 			{
-				return "NS.STMS.Business.SystemTables.EntityPropertySettings.Data.EntityProperties";
+				return "NS.STMS.Business.Modules.SystemTables.EntityPropertySettings.Data.EntityProperties";
 			}
 		}
 		public static string BusinessNamespace

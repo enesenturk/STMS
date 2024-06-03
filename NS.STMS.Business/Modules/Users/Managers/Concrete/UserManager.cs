@@ -66,7 +66,6 @@ namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 				t_grade_id = requestDto.GradeId,
 				school_name = requestDto.SchoolName,
 			}, _id);
-
 		}
 
 		#endregion
