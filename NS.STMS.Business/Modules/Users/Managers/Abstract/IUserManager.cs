@@ -1,4 +1,5 @@
 ﻿using NS.STMS.DTO.Users;
+using NS.STMS.DTO.Users.Request;
 
 namespace NS.STMS.Business.Modules.Users.Managers.Abstract
 {
@@ -6,6 +7,8 @@ namespace NS.STMS.Business.Modules.Users.Managers.Abstract
 	{
 
 		#region Create
+
+		void CreateUser(CreateUserRequestDto requestDto);
 
 		#endregion
 

@@ -38,12 +38,13 @@ builder.Services.AddCors(options =>
 	options.AddPolicy("stms-cors", policy =>
 	{
 		policy.WithOrigins(builder.Configuration.GetSection("AllowedOrigins").Get<string[]>())
-					.AllowAnyHeader()
-					.AllowAnyMethod();
+		.AllowAnyHeader()
+		.AllowAnyMethod();
 	});
 });
 
 ConnectionSettings.DbConnectionString = builder.Configuration.GetSection("DbConnectionString").Value;
+AppSettings.EncryptionKey = builder.Configuration.GetSection("EncryptionKey").Value;
 
 var app = builder.Build();
 

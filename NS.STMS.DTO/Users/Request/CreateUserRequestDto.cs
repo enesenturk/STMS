@@ -1,6 +1,6 @@
-﻿namespace NS.STMS.DTO.Authentication.Request
+﻿namespace NS.STMS.DTO.Users.Request
 {
-	public class CreateStudentRequestDto
+	public class CreateUserRequestDto
 	{
 
 		public string Name { get; set; }

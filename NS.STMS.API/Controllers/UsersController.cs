@@ -5,6 +5,7 @@ using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.Business.Modules.Users.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.Users;
+using NS.STMS.DTO.Users.Request;
 using NS.STMS.DTO.Users.Response;
 
 namespace NS.STMS.API.Controllers
@@ -30,6 +31,17 @@ namespace NS.STMS.API.Controllers
 		#endregion
 
 		#region Create
+
+		[HttpPost]
+		public OkObjectResult CreateUser(CreateUserRequestDto requestDto)
+		{
+			_userManager.CreateUser(requestDto);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S"
+			});
+		}
 
 		#endregion
 

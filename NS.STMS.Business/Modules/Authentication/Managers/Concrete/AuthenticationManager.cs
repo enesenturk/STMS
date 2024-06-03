@@ -8,6 +8,8 @@ using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
 using NS.STMS.DTO.SystemTables.Address;
 using NS.STMS.Entity.Context;
+using NS.STMS.Resources.Security.Encryption;
+using NS.STMS.Settings;
 
 namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 {
@@ -16,6 +18,7 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		#region CTOR
 
+		// TODO:
 		private int _id = 1;
 		private readonly IUserDal _userDal;
 		private readonly IStudentDal _studentDal;
@@ -36,33 +39,28 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 		[TransactionalOperationAspect]
 		public void CreateStudent(CreateStudentRequestDto requestDto)
 		{
-			try
-			{
-				string hash = PasswordHasher.HashPasword(requestDto.Password, out var salt);
+			string passwordDecrypted = EncryptionHelper.Decrypt(requestDto.Password, AppSettings.EncryptionKey);
 
-				t_user user = _userDal.Add(new t_user
-				{
-					email = requestDto.Email,
-					password = hash,
-					password_salt = salt,
-					name = requestDto.Name,
-					surname = requestDto.Surname,
-					date_of_birth = DateOnly.FromDateTime(requestDto.DateOfBirth),
-					t_county_id = requestDto.CountyId,
-					t_property_id_user_type = UserTypes.Student
-				}, _id);
+			string hash = PasswordHasher.HashPasword(passwordDecrypted, out var salt);
 
-				_studentDal.Add(new t_student
-				{
-					t_user_id = user.id,
-					t_grade_id = requestDto.GradeId,
-					school_name = requestDto.SchoolName,
-				}, _id);
-			}
-			catch (Exception e)
+			t_user user = _userDal.Add(new t_user
 			{
-				throw e;
-			}
+				email = requestDto.Email,
+				password = hash,
+				password_salt = salt,
+				name = requestDto.Name,
+				surname = requestDto.Surname,
+				date_of_birth = DateOnly.FromDateTime(requestDto.DateOfBirth),
+				t_county_id = requestDto.CountyId,
+				t_property_id_user_type = UserTypes.Student
+			}, _id);
+
+			_studentDal.Add(new t_student
+			{
+				t_user_id = user.id,
+				t_grade_id = requestDto.GradeId,
+				school_name = requestDto.SchoolName,
+			}, _id);
 		}
 
 		#endregion
