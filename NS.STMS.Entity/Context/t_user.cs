@@ -23,21 +23,25 @@ public partial class t_user : IEntity
 
 	public int t_property_id_user_type { get; set; }
 
-	public bool accepted_terms { get; set; }
+    public bool accepted_terms { get; set; }
 
-	public DateTime? accepted_terms_at { get; set; }
+    public DateTime? accepted_terms_at { get; set; }
 
-	public bool verified_email { get; set; }
+    public bool verified_email { get; set; }
 
-	public DateTime? verified_email_at { get; set; }
+    public DateTime? verified_email_at { get; set; }
 
-	public int login_fail_count { get; set; }
+    public bool needs_change_password { get; set; }
 
-	public bool needs_change_password { get; set; }
+    public string preferred_language { get; set; }
 
-	public virtual t_county t_county { get; set; }
+    public string preferred_date_format { get; set; }
 
-	public virtual t_property t_property_id_user_typeNavigation { get; set; }
+    public string preferred_number_format { get; set; }
 
-	public virtual t_student t_student { get; set; }
+    public virtual t_county t_county { get; set; }
+
+    public virtual t_property t_property_id_user_typeNavigation { get; set; }
+
+    public virtual t_student t_student { get; set; }
 }
