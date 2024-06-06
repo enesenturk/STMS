@@ -23,9 +23,9 @@ public partial class t_user : IEntity
 
 	public int t_property_id_user_type { get; set; }
 
-    public bool accepted_terms { get; set; }
+	public bool accepted_terms { get; set; }
 
-    public DateTime? accepted_terms_at { get; set; }
+	public DateTime? accepted_terms_at { get; set; }
 
     public bool verified_email { get; set; }
 
@@ -44,4 +44,6 @@ public partial class t_user : IEntity
     public virtual t_property t_property_id_user_typeNavigation { get; set; }
 
     public virtual t_student t_student { get; set; }
+
+    public virtual ICollection<t_user_login_history> t_user_login_histories { get; set; } = new List<t_user_login_history>();
 }
