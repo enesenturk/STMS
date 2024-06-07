@@ -76,7 +76,7 @@ namespace NS.STMS.API.Controllers
 
 				if (!response.AcceptedTerms)
 				{
-					return StatusCode(302, responseModel);
+					return StatusCode((int)HttpStatusCode.Found, responseModel);
 				}
 				else if (response.NeedsChangePassword)
 				{
