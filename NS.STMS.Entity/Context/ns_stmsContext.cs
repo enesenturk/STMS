@@ -276,7 +276,7 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
 			entity.Property(e => e.description)
 				.IsRequired()
-				.HasMaxLength(50);
+				.HasMaxLength(100);
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 		});
 

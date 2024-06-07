@@ -9,6 +9,7 @@ namespace NS.STMS.Business.Modules.Users.Managers.Abstract
 		#region Create
 
 		void CreateUser(CreateUserRequestDto requestDto);
+		void CreateActivityLog(UserActivityDto activityDto);
 
 		#endregion
 

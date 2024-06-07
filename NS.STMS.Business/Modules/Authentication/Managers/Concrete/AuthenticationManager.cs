@@ -1,11 +1,13 @@
 ﻿using NS.STMS.Business.Modules.Authentication.Extracteds;
 using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.Business.Modules.SystemTables.EntityPropertySettings.Data.EntityProperties;
+using NS.STMS.Business.Modules.Users.Managers.Abstract;
 using NS.STMS.Core.Aspects.Postsharp;
 using NS.STMS.Core.Helpers;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
+using NS.STMS.DTO.Users;
 using NS.STMS.Entity.Context;
 using NS.STMS.Resources.Security.Encryption;
 using NS.STMS.Settings;
@@ -24,21 +26,24 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		private readonly IStudentDal _studentDal;
 		private readonly IUserDal _userDal;
-		private readonly IUserLoginHistoryDal _userLoginHistoryDal;
+
+		private readonly IUserManager _userManager;
 
 		public AuthenticationManager(
 			AuthenticationExtracteds authenticationExtracteds,
 
 			IStudentDal studentDal,
 			IUserDal userDal,
-			IUserLoginHistoryDal userLoginHistoryDal
+
+			IUserManager userManager
 			)
 		{
 			_authenticationExtracteds = authenticationExtracteds;
 
 			_studentDal = studentDal;
 			_userDal = userDal;
-			_userLoginHistoryDal = userLoginHistoryDal;
+
+			_userManager = userManager;
 		}
 
 		#endregion
@@ -106,6 +111,7 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		#region Update
 
+		[TransactionalOperationAspect]
 		public void AcceptTermsAndConditions(AcceptTermsAndConditionsRequestDto requestDto)
 		{
 			t_user user = _userDal.Get(x => x.email == requestDto.Email);
@@ -114,6 +120,11 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 			user.accepted_terms_at = DateTimeHelper.GetNow();
 
 			_userDal.Update(user, user.id);
+			_userManager.CreateActivityLog(new UserActivityDto
+			{
+				UserId = user.id,
+				Description = "Accepted terms and conditions."
+			});
 		}
 
 		#endregion

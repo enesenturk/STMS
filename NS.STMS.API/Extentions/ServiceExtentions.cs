@@ -58,6 +58,7 @@ namespace NS.STMS.API.Extentions
 
 			services.AddSingleton<IStudentDal, EfStudentDal>();
 			services.AddSingleton<IUserDal, EfUserDal>();
+			services.AddSingleton<IUserActivityHistory, EfUserActivityHistory>();
 			services.AddSingleton<IUserLoginHistoryDal, EfUserLoginHistoryDal>();
 
 			#endregion

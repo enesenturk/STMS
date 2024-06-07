@@ -21,18 +21,21 @@ namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 		private int _id = 1;
 		private readonly IStudentDal _studentDal;
 		private readonly IUserDal _userDal;
+		private readonly IUserActivityHistory _userActivityHistory;
 
 		private readonly IMapper _mapper;
 
 		public UserManager(
 			IStudentDal studentDal,
 			IUserDal userDal,
+			IUserActivityHistory userActivityHistory,
 
 			IMapper mapper
 			)
 		{
 			_studentDal = studentDal;
 			_userDal = userDal;
+			_userActivityHistory = userActivityHistory;
 
 			_mapper = mapper;
 		}
@@ -66,6 +69,13 @@ namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 				t_grade_id = requestDto.GradeId,
 				school_name = requestDto.SchoolName,
 			}, _id);
+		}
+
+		public void CreateActivityLog(UserActivityDto activityDto)
+		{
+			t_user_activity_history activity = _mapper.Map<t_user_activity_history>(activityDto);
+
+			_userActivityHistory.Add(activity, activityDto.UserId);
 		}
 
 		#endregion
