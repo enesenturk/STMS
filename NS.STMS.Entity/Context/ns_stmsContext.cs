@@ -38,6 +38,10 @@ public partial class ns_stmsContext : DbContext
 
 	public virtual DbSet<t_user> t_users { get; set; }
 
+	public virtual DbSet<t_user_activity_history> t_user_activity_histories { get; set; }
+
+	public virtual DbSet<t_user_login_history> t_user_login_histories { get; set; }
+
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		optionsBuilder.UseNpgsql(ConnectionSettings.DbConnectionString);
@@ -261,13 +265,33 @@ public partial class ns_stmsContext : DbContext
 				.HasConstraintName("t_user_t_property_id_fkey");
 		});
 
+		modelBuilder.Entity<t_user_activity_history>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("pk_t_user_activity_history");
+
+			entity.ToTable("t_user_activity_history");
+
+			entity.HasIndex(e => new { e.created_by, e.created_at }, "idx_user_activity_history_user_id_create_date");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.description)
+				.IsRequired()
+				.HasMaxLength(50);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
 		modelBuilder.Entity<t_user_login_history>(entity =>
 		{
 			entity.HasKey(e => e.id).HasName("pk_t_user_login_history");
 
 			entity.ToTable("t_user_login_history");
 
+			entity.HasIndex(e => new { e.t_user_id, e.created_at }, "idx_user_login_history_user_id_create_date");
+
 			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
+			entity.Property(e => e.description)
+				.IsRequired()
+				.HasMaxLength(50);
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 
 			entity.HasOne(d => d.t_user).WithMany(p => p.t_user_login_histories)
