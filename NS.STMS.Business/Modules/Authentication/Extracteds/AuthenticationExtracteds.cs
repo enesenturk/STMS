@@ -36,6 +36,7 @@ namespace NS.STMS.Business.Modules.Authentication.Extracteds
 		{
 			TryLoginResponseDto response = new TryLoginResponseDto
 			{
+				Id = loginUser.id,
 				Email = loginUser.email,
 				Name = loginUser.name,
 				Surname = loginUser.surname,
