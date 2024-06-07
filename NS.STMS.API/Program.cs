@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.BindMapper();
 builder.Services.BindDataAccess();
+builder.Services.BindExtracteds();
 builder.Services.BindBusinessRules();
 builder.Services.BindManagers();
 

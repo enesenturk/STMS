@@ -62,34 +62,30 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 		#region Read
 
 		public List<TEntity> GetList<K>(
-			Expression<Func<TEntity, K>> OrderBy,
-			Expression<Func<TEntity, bool>> filter = null)
-		{
-			using (var context = new TContext())
-			{
-				return filter is null
-				? context.Set<TEntity>().DeletedFilter().OrderByConsideringNulls(OrderBy).ToList()
-				: context.Set<TEntity>().DeletedFilter().Where(filter).OrderByConsideringNulls(OrderBy).ToList();
-			}
-		}
-
-		public List<TEntity> GetListWithProperties<K>(
-			Expression<Func<TEntity, K>> OrderBy,
-			string[] navProperties,
+			Expression<Func<TEntity, K>> orderBy,
 			Expression<Func<TEntity, bool>> filter = null,
-			bool orderByDesc = false)
+			string[] navProperties = null,
+			bool orderByDesc = false,
+			int skipCount = 0,
+			int takeCount = -1)
 		{
 			using (var context = new TContext())
 			{
-				var query = context.Set<TEntity>().DeletedFilter().IncludeProperties(navProperties);
+				var query = context.Set<TEntity>().DeletedFilter();
 
 				if (filter != null)
 					query = query.Where(filter);
 
-				if (orderByDesc)
-					return query.OrderByDescending(OrderBy).ToList();
-				else
-					return query.OrderBy(OrderBy).ToList();
+				if (navProperties != null)
+					query = query.IncludeProperties(navProperties);
+
+				query = orderByDesc
+					? query.OrderByDescending(orderBy)
+					: query.OrderBy(orderBy);
+
+				return takeCount != -1
+					? query.Skip(skipCount).Take(takeCount).ToList()
+					: query.ToList();
 			}
 		}
 
@@ -113,30 +109,26 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
-		public TEntity Get(Expression<Func<TEntity, bool>> filter)
+		public TEntity Get(Expression<Func<TEntity, bool>> filter, string[] navProperties = null)
 		{
 			using (var context = new TContext())
 			{
-				return context.Set<TEntity>().DeletedFilter().FirstOrDefault(filter);
-			}
-		}
+				var query = context.Set<TEntity>().DeletedFilter();
 
-		public TEntity GetWithProperties(Expression<Func<TEntity, bool>> filter, string[] navProperties)
-		{
-			using (var context = new TContext())
-			{
-				var query = context.Set<TEntity>().DeletedFilter().IncludeProperties(navProperties);
+				if (navProperties != null)
+					query = query.IncludeProperties(navProperties);
+
 				return query.FirstOrDefault(filter);
 			}
 		}
 
-		public K Max<K>(Expression<Func<TEntity, K>> OrderBy, Expression<Func<TEntity, bool>> filter = null)
+		public K Max<K>(Expression<Func<TEntity, K>> orderBy, Expression<Func<TEntity, bool>> filter = null)
 		{
 			using (var context = new TContext())
 			{
 				return filter is null
-					? context.Set<TEntity>().DeletedFilter().Max(OrderBy)
-					: context.Set<TEntity>().DeletedFilter().Where(filter).Max(OrderBy);
+					? context.Set<TEntity>().DeletedFilter().Max(orderBy)
+					: context.Set<TEntity>().DeletedFilter().Where(filter).Max(orderBy);
 			}
 		}
 
@@ -146,8 +138,8 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		public TEntity Update(TEntity entity, int updatedBy)
 		{
-			entity.created_at = DateTimeHelper.GetNow();
-			entity.created_by = updatedBy;
+			entity.updated_at = DateTimeHelper.GetNow();
+			entity.updated_by = updatedBy;
 
 			using (var context = new TContext())
 			{
@@ -160,9 +152,6 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 
 		public void UpdateOneField<K>(TEntity entity, Expression<Func<TEntity, K>> field, int updatedBy)
 		{
-			entity.created_at = DateTimeHelper.GetNow();
-			entity.created_by = updatedBy;
-
 			using (var context = new TContext())
 			{
 				context.Set<TEntity>().Attach(entity);

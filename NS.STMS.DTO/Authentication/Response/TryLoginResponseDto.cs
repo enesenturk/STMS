@@ -1,6 +1,6 @@
 ﻿namespace NS.STMS.DTO.Authentication.Response
 {
-	public class LoginResponseDto
+	public class TryLoginResponseDto
 	{
 
 		public string Name { get; set; }
@@ -14,6 +14,11 @@
 		public string PreferredNumberFormat { get; set; }
 
 		public StudentLoginResponseDto Student { get; set; }
+
+		public bool AcceptedTerms { get; set; }
+		public bool EmailVerified { get; set; }
+		public bool NeedsChangePassword { get; set; }
+		public bool IsBlocked { get; set; }
 
 	}
 }

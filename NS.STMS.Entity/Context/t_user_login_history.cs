@@ -9,5 +9,7 @@ public partial class t_user_login_history : IEntity
 
 	public bool is_successful { get; set; }
 
+	public string description { get; set; }
+
 	public virtual t_user t_user { get; set; }
 }

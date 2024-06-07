@@ -16,25 +16,21 @@ namespace NS.STMS.Core.DataAccess
 
 		#region Read
 
-		List<TEntity> GetList<T>(
-			Expression<Func<TEntity, T>> OrderBy,
-			Expression<Func<TEntity, bool>> filter = null);
-
-		List<TEntity> GetListWithProperties<K>(
-			Expression<Func<TEntity, K>> OrderBy,
-			string[] navProperties,
-			Expression<Func<TEntity, bool>> filter = null,
-			bool orderByDesc = false);
+		List<TEntity> GetList<K>(
+					Expression<Func<TEntity, K>> orderBy,
+					Expression<Func<TEntity, bool>> filter = null,
+					string[] navProperties = null,
+					bool orderByDesc = false,
+					int skipCount = 0,
+					int takeCount = -1);
 
 		List<TEntity> GetListDistinct(Expression<Func<TEntity, bool>> filter = null);
 
 		int GetCount(Expression<Func<TEntity, bool>> filter = null);
 
-		TEntity Get(Expression<Func<TEntity, bool>> filter);
+		TEntity Get(Expression<Func<TEntity, bool>> filter, string[] navProperties = null);
 
-		TEntity GetWithProperties(Expression<Func<TEntity, bool>> filter, string[] navProperties);
-
-		K Max<K>(Expression<Func<TEntity, K>> OrderBy, Expression<Func<TEntity, bool>> filter = null);
+		K Max<K>(Expression<Func<TEntity, K>> orderBy, Expression<Func<TEntity, bool>> filter = null);
 
 		#endregion
 

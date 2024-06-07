@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using NS.STMS.Business.Modules.Authentication.Extracteds;
 using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.Business.Modules.Authentication.Managers.Concrete;
+using NS.STMS.Business.Modules.Authentication.Mappings;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.Business.Modules.Lectures.Managers.Concrete;
 using NS.STMS.Business.Modules.Lectures.Mappings;
@@ -22,6 +24,13 @@ namespace NS.STMS.API.Extentions
 {
 	public static class ServiceExtentions
 	{
+
+		public static void BindBusinessRules(this IServiceCollection services)
+		{
+			#region SystemTables
+
+			#endregion
+		}
 
 		public static void BindDataAccess(this IServiceCollection services)
 		{
@@ -47,11 +56,21 @@ namespace NS.STMS.API.Extentions
 
 			#region Users
 
-			services.AddSingleton<IUserDal, EfUserDal>();
 			services.AddSingleton<IStudentDal, EfStudentDal>();
+			services.AddSingleton<IUserDal, EfUserDal>();
+			services.AddSingleton<IUserLoginHistoryDal, EfUserLoginHistoryDal>();
 
 			#endregion
 
+		}
+
+		public static void BindExtracteds(this IServiceCollection services)
+		{
+			#region Authentication
+
+			services.AddSingleton<AuthenticationExtracteds>();
+
+			#endregion
 		}
 
 		public static void BindManagers(this IServiceCollection services)
@@ -91,22 +110,16 @@ namespace NS.STMS.API.Extentions
 			// AutoMapper Configurations
 			var mapperConfig = new MapperConfiguration(mc =>
 			{
-				mc.AddProfile(new SystemTableProfile());
+				mc.AddProfile(new AuthenticationProfile());
 				mc.AddProfile(new GradeProfile());
 				mc.AddProfile(new LectureProfile());
+				mc.AddProfile(new SystemTableProfile());
 				mc.AddProfile(new UserProfile());
 			});
 
 			IMapper mapper = mapperConfig.CreateMapper();
 			services.AddSingleton(mapper);
 
-		}
-
-		public static void BindBusinessRules(this IServiceCollection services)
-		{
-			#region SystemTables
-
-			#endregion
 		}
 
 		public static void RegisterEntityProperties(this IApplicationBuilder app)

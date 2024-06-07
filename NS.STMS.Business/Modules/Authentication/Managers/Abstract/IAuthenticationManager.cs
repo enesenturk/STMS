@@ -6,25 +6,27 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Abstract
     public interface IAuthenticationManager
     {
 
-        #region Create
+		#region Create
 
-        void CreateStudent(CreateStudentRequestDto requestDto);
+		void CreateStudent(CreateStudentRequestDto requestDto);
 
-        #endregion
+		#endregion
 
-        #region Read
+		#region Read
 
-        LoginResponseDto Login(LoginRequestDto requestDto);
+		TryLoginResponseDto Login(LoginRequestDto requestDto);
 
-        #endregion
+		#endregion
 
-        #region Update
+		#region Update
 
-        #endregion
+		void AcceptTermsAndConditions(AcceptTermsAndConditionsRequestDto requestDto);
 
-        #region Delete
+		#endregion
 
-        #endregion
+		#region Delete
 
-    }
+		#endregion
+
+	}
 }

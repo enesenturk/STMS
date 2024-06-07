@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
+using NS.STMS.API.Utility;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLectures.Response;
@@ -8,23 +10,17 @@ namespace NS.STMS.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class LecturesController : ControllerBase
+	public class LecturesController : CustomBaseController
 	{
 
 		#region CTOR
 
-		private readonly ILogger<LecturesController> _logger;
-
 		private readonly ILectureManager _lectureManager;
 
-		public LecturesController(
-			ILogger<LecturesController> logger,
+		public LecturesController(ILectureManager lectureManager,
 
-			ILectureManager lectureManager
-			)
+			IMapper mapper) : base(mapper)
 		{
-			_logger = logger;
-
 			_lectureManager = lectureManager;
 		}
 

@@ -54,10 +54,10 @@ namespace NS.STMS.Business.Modules.Lectures.Managers.Concrete
 		public List<JSonDto> GetGradeLectures(int countryId, int gradeId)
 		{
 			return _mapper.Map<List<JSonDto>>(
-				_gradeLectureDal.GetListWithProperties(
+				_gradeLectureDal.GetList(
 					x => x.t_grade_id,
-					new string[] { "t_lecture" },
-					x => x.t_grade_id == gradeId && x.t_lecture.t_country_id == countryId
+					filter: x => x.t_grade_id == gradeId && x.t_lecture.t_country_id == countryId,
+					navProperties: new string[] { "t_lecture" }
 					)
 				);
 		}

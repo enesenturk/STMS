@@ -75,10 +75,10 @@ namespace NS.STMS.Business.Modules.Users.Managers.Concrete
 		public List<UserDto> GetUsers()
 		{
 			return _mapper.Map<List<UserDto>>(
-				_userDal.GetListWithProperties(
+				_userDal.GetList(
 					x => x.name,
-					new string[] { "t_property_id_user_typeNavigation" },
-					filter: null
+					filter: null,
+					navProperties: new string[] { "t_property_id_user_typeNavigation" }
 					));
 		}
 

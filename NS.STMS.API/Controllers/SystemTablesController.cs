@@ -1,5 +1,7 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
+using NS.STMS.API.Utility;
 using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.SystemTables.Address;
@@ -8,14 +10,16 @@ using NS.STMS.DTO.SystemTables.DifficultyLevel;
 namespace NS.STMS.API.Controllers
 {
 	[ApiController]
-	public class SystemTablesController : ControllerBase
+	public class SystemTablesController : CustomBaseController
 	{
 
 		#region CTOR
 
 		private readonly ISystemTableManager _systemTableManager;
 
-		public SystemTablesController(ISystemTableManager systemTableManager)
+		public SystemTablesController(ISystemTableManager systemTableManager,
+
+			IMapper mapper) : base(mapper)
 		{
 			_systemTableManager = systemTableManager;
 		}

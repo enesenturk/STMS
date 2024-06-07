@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
+using NS.STMS.API.Utility;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.DTO;
 using NS.STMS.DTO.GradeLectures.Response;
@@ -8,14 +10,16 @@ namespace NS.STMS.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class GradesController : ControllerBase
+	public class GradesController : CustomBaseController
 	{
 
 		#region CTOR
 
 		private readonly IGradeManager _gradeManager;
 
-		public GradesController(IGradeManager gradeManager)
+		public GradesController(IGradeManager gradeManager,
+
+			IMapper mapper) : base(mapper)
 		{
 			_gradeManager = gradeManager;
 		}

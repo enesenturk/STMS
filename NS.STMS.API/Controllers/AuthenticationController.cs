@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
+using NS.STMS.API.Utility;
 using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
+using System.Net;
 
 namespace NS.STMS.API.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
-	public class AuthenticationController : ControllerBase
+	public class AuthenticationController : CustomBaseController
 	{
 
 		#region CTOR
 
 		private readonly IAuthenticationManager _authenticationManager;
 
-		public AuthenticationController(IAuthenticationManager authenticationManager)
+		public AuthenticationController(IAuthenticationManager authenticationManager,
+
+			IMapper mapper) : base(mapper)
 		{
 			_authenticationManager = authenticationManager;
 		}
@@ -42,20 +47,63 @@ namespace NS.STMS.API.Controllers
 
 		[HttpPost]
 		[Route("Login")]
-		public OkObjectResult Login(LoginRequestDto requestDto)
+		public ActionResult Login(LoginRequestDto requestDto)
 		{
-			LoginResponseDto response = _authenticationManager.Login(requestDto);
+			TryLoginResponseDto response = _authenticationManager.Login(requestDto);
 
-			return Ok(new BaseResponseModel
+			if (response is null)
 			{
-				Type = "S",
-				ResponseModel = response
-			});
+				return StatusCode((int)HttpStatusCode.NotFound);
+			}
+			else if (response.IsBlocked)
+			{
+				return StatusCode((int)HttpStatusCode.Locked);
+			}
+			else if (!response.EmailVerified)
+			{
+				return StatusCode(212);
+			}
+			// successful login
+			else
+			{
+				LoginResponseDto successfulLogin = _mapper.Map<LoginResponseDto>(response);
+
+				BaseResponseModel responseModel = new BaseResponseModel
+				{
+					Type = "S",
+					ResponseModel = successfulLogin
+				};
+
+				if (!response.AcceptedTerms)
+				{
+					return StatusCode(302, responseModel);
+				}
+				else if (response.NeedsChangePassword)
+				{
+					return StatusCode((int)HttpStatusCode.NonAuthoritativeInformation, responseModel);
+				}
+				else
+				{
+					return Ok(responseModel);
+				}
+			}
 		}
 
 		#endregion
 
 		#region Update
+
+		[HttpPut]
+		[Route("AcceptTermsAndConditions")]
+		public OkObjectResult AcceptTermsAndConditions(AcceptTermsAndConditionsRequestDto requestDto)
+		{
+			_authenticationManager.AcceptTermsAndConditions(requestDto);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S"
+			});
+		}
 
 		#endregion
 

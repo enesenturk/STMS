@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NS.STMS.API.Models;
+using NS.STMS.API.Utility;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.Business.Modules.SystemTables.Managers.Abstract;
 using NS.STMS.Business.Modules.Users.Managers.Abstract;
@@ -12,7 +14,7 @@ namespace NS.STMS.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class UsersController : ControllerBase
+	public class UsersController : CustomBaseController
 	{
 
 		#region CTOR
@@ -21,7 +23,9 @@ namespace NS.STMS.API.Controllers
 		private readonly ISystemTableManager _systemTableManager;
 		private readonly IUserManager _userManager;
 
-		public UsersController(IGradeManager gradeManager, ISystemTableManager systemTableManager, IUserManager userManager)
+		public UsersController(IGradeManager gradeManager, ISystemTableManager systemTableManager, IUserManager userManager,
+
+			IMapper mapper) : base(mapper)
 		{
 			_gradeManager = gradeManager;
 			_systemTableManager = systemTableManager;

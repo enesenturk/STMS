@@ -1,12 +1,11 @@
-﻿using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
+﻿using NS.STMS.Business.Modules.Authentication.Extracteds;
+using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.Business.Modules.SystemTables.EntityPropertySettings.Data.EntityProperties;
 using NS.STMS.Core.Aspects.Postsharp;
 using NS.STMS.Core.Helpers;
-using NS.STMS.Core.Utilities.ExceptionHandling;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DTO.Authentication.Request;
 using NS.STMS.DTO.Authentication.Response;
-using NS.STMS.DTO.SystemTables.Address;
 using NS.STMS.Entity.Context;
 using NS.STMS.Resources.Security.Encryption;
 using NS.STMS.Settings;
@@ -20,16 +19,26 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		// TODO:
 		private int _id = 1;
-		private readonly IUserDal _userDal;
+
+		private readonly AuthenticationExtracteds _authenticationExtracteds;
+
 		private readonly IStudentDal _studentDal;
+		private readonly IUserDal _userDal;
+		private readonly IUserLoginHistoryDal _userLoginHistoryDal;
 
 		public AuthenticationManager(
+			AuthenticationExtracteds authenticationExtracteds,
+
+			IStudentDal studentDal,
 			IUserDal userDal,
-			IStudentDal studentDal
+			IUserLoginHistoryDal userLoginHistoryDal
 			)
 		{
-			_userDal = userDal;
+			_authenticationExtracteds = authenticationExtracteds;
+
 			_studentDal = studentDal;
+			_userDal = userDal;
+			_userLoginHistoryDal = userLoginHistoryDal;
 		}
 
 		#endregion
@@ -67,51 +76,28 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 
 		#region Read
 
-		public LoginResponseDto Login(LoginRequestDto requestDto)
+		public TryLoginResponseDto Login(LoginRequestDto requestDto)
 		{
-			t_user loginUser = _userDal.GetWithProperties(x => x.email == requestDto.Email, new string[] { "t_county" });
+			t_user loginUser = _userDal.Get(x => x.email == requestDto.Email);
 
 			if (loginUser is null) return null;
 
-			bool verified = PasswordHasher.VerifyPassword(requestDto.Password, loginUser.password, loginUser.password_salt);
+			bool isUserBlocked = _authenticationExtracteds.IsUserBlocked(loginUser.id);
 
-			if (!verified) return null;
+			if (isUserBlocked) return new TryLoginResponseDto { IsBlocked = true };
 
-			LoginResponseDto response = new LoginResponseDto
+			bool correctPassword = PasswordHasher.VerifyPassword(requestDto.Password, loginUser.password, loginUser.password_salt);
+
+			if (!correctPassword)
 			{
-				Email = loginUser.email,
-				Name = loginUser.name,
-				Surname = loginUser.surname,
-				DateOfBirth = loginUser.date_of_birth,
-				ImageBase64 = loginUser.image_base64,
-				Address = new AddressDto
-				{
-					CountyId = loginUser.t_county_id,
-					CityId = loginUser.t_county.t_city_id
-				}
-			};
+				_authenticationExtracteds.AddLoginHistory(loginUser, isSuccessful: false);
 
-			if (loginUser.t_property_id_user_type == UserTypes.Student)
-			{
-				t_student student = _studentDal.Get(x => x.t_user_id == loginUser.id);
-
-				if (student is null) throw new FatalException();
-
-				response.IsStudent = true;
-				response.Student = new StudentLoginResponseDto
-				{
-					GradeId = student.t_grade_id,
-					SchoolName = student.school_name
-				};
+				return null;
 			}
-			else if (loginUser.t_property_id_user_type == UserTypes.Teacher)
-			{
-				throw new NotImplementedException();
-			}
-			else
-			{
-				throw new NotImplementedException();
-			}
+
+			TryLoginResponseDto response = _authenticationExtracteds.GetLoginResponseDto(loginUser);
+
+			_authenticationExtracteds.AddLoginHistory(loginUser, isSuccessful: true);
 
 			return response;
 		}
@@ -119,6 +105,16 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Concrete
 		#endregion
 
 		#region Update
+
+		public void AcceptTermsAndConditions(AcceptTermsAndConditionsRequestDto requestDto)
+		{
+			t_user user = _userDal.Get(x => x.email == requestDto.Email);
+
+			user.accepted_terms = true;
+			user.accepted_terms_at = DateTimeHelper.GetNow();
+
+			_userDal.Update(user, user.id);
+		}
 
 		#endregion
 
