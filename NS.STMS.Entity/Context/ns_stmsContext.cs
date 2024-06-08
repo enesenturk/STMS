@@ -40,6 +40,8 @@ public partial class ns_stmsContext : DbContext
 
 	public virtual DbSet<t_user_activity_history> t_user_activity_histories { get; set; }
 
+	public virtual DbSet<t_user_forgot_password> t_user_forgot_passwords { get; set; }
+
 	public virtual DbSet<t_user_login_history> t_user_login_histories { get; set; }
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -277,6 +279,18 @@ public partial class ns_stmsContext : DbContext
 			entity.Property(e => e.description)
 				.IsRequired()
 				.HasMaxLength(100);
+			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
+		});
+
+		modelBuilder.Entity<t_user_forgot_password>(entity =>
+		{
+			entity.HasKey(e => e.id).HasName("pk_t_user_forgot_password");
+
+			entity.ToTable("t_user_forgot_password");
+
+			entity.HasIndex(e => e.guid, "idx_user_forgot_password_guid");
+
+			entity.Property(e => e.created_at).HasColumnType("timestamp without time zone");
 			entity.Property(e => e.updated_at).HasColumnType("timestamp without time zone");
 		});
 
