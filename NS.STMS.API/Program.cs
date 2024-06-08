@@ -11,10 +11,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.BindMapper();
+builder.Services.BindBusinessRules();
 builder.Services.BindDataAccess();
 builder.Services.BindExtracteds();
-builder.Services.BindBusinessRules();
 builder.Services.BindManagers();
+builder.Services.BindServiceAdapters();
 
 builder.Services.AddControllers().AddJsonOptions(opts =>
 {
@@ -45,7 +46,10 @@ builder.Services.AddCors(options =>
 });
 
 ConnectionSettings.DbConnectionString = builder.Configuration.GetSection("DbConnectionString").Value;
+AppSettings.ClientUrl = builder.Configuration.GetSection("ClientUrl").Value;
 AppSettings.EncryptionKey = builder.Configuration.GetSection("EncryptionKey").Value;
+AppSettings.SenderEmailAddress = builder.Configuration.GetSection("SenderEmailAddress").Value;
+AppSettings.SenderEmailPassword = builder.Configuration.GetSection("SenderEmailPassword").Value;
 
 var app = builder.Build();
 

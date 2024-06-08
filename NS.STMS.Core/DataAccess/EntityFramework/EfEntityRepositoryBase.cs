@@ -122,6 +122,29 @@ namespace NS.STMS.Core.DataAccess.EntityFramework
 			}
 		}
 
+		public TEntity GetLast<K>(Expression<Func<TEntity, K>> orderBy,
+			Expression<Func<TEntity, bool>> filter = null,
+			string[] navProperties = null,
+			bool orderByDesc = false)
+		{
+			using (var context = new TContext())
+			{
+				var query = context.Set<TEntity>().DeletedFilter();
+
+				if (filter != null)
+					query = query.Where(filter);
+
+				if (navProperties != null)
+					query = query.IncludeProperties(navProperties);
+
+				query = orderByDesc
+					? query.OrderByDescending(orderBy)
+					: query.OrderBy(orderBy);
+
+				return query.Skip(0).Take(1).FirstOrDefault();
+			}
+		}
+
 		public K Max<K>(Expression<Func<TEntity, K>> orderBy, Expression<Func<TEntity, bool>> filter = null)
 		{
 			using (var context = new TContext())

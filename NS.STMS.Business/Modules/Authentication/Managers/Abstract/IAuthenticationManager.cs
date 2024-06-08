@@ -21,6 +21,8 @@ namespace NS.STMS.Business.Modules.Authentication.Managers.Abstract
 		#region Update
 
 		void AcceptTermsAndConditions(AcceptTermsAndConditionsRequestDto requestDto);
+		void ForgotPassword(ForgotPasswordRequestDto requestDto);
+		void ResetPassword(ResetPasswordRequestDto requestDto);
 
 		#endregion
 

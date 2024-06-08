@@ -3,6 +3,7 @@ using NS.STMS.Business.Modules.Authentication.Extracteds;
 using NS.STMS.Business.Modules.Authentication.Managers.Abstract;
 using NS.STMS.Business.Modules.Authentication.Managers.Concrete;
 using NS.STMS.Business.Modules.Authentication.Mappings;
+using NS.STMS.Business.Modules.Authentication.Rules;
 using NS.STMS.Business.Modules.Lectures.Managers.Abstract;
 using NS.STMS.Business.Modules.Lectures.Managers.Concrete;
 using NS.STMS.Business.Modules.Lectures.Mappings;
@@ -13,6 +14,8 @@ using NS.STMS.Business.Modules.SystemTables.Mappings;
 using NS.STMS.Business.Modules.Users.Managers.Abstract;
 using NS.STMS.Business.Modules.Users.Managers.Concrete;
 using NS.STMS.Business.Modules.Users.Mappings;
+using NS.STMS.Business.ServiceAdapters.Adapters.Abstract;
+using NS.STMS.Business.ServiceAdapters.Adapters.Concrete.DotNetAdapters;
 using NS.STMS.DAL.Authentication.Accessors.Abstract;
 using NS.STMS.DAL.Authentication.Accessors.Concrete.EntityFramework;
 using NS.STMS.DAL.Lectures.Accessors.Abstract;
@@ -27,9 +30,13 @@ namespace NS.STMS.API.Extentions
 
 		public static void BindBusinessRules(this IServiceCollection services)
 		{
-			#region SystemTables
+
+			#region Authentication
+
+			services.AddSingleton<AuthenticationRules>();
 
 			#endregion
+
 		}
 
 		public static void BindDataAccess(this IServiceCollection services)
@@ -60,6 +67,7 @@ namespace NS.STMS.API.Extentions
 			services.AddSingleton<IUserDal, EfUserDal>();
 			services.AddSingleton<IUserActivityHistory, EfUserActivityHistory>();
 			services.AddSingleton<IUserLoginHistoryDal, EfUserLoginHistoryDal>();
+			services.AddSingleton<IUserForgotPassword, EfUserForgotPassword>();
 
 			#endregion
 
@@ -120,6 +128,13 @@ namespace NS.STMS.API.Extentions
 
 			IMapper mapper = mapperConfig.CreateMapper();
 			services.AddSingleton(mapper);
+
+		}
+
+		public static void BindServiceAdapters(this IServiceCollection services)
+		{
+
+			services.AddSingleton<IEmailServiceAdapter, DotNetEmailServiceAdapter>();
 
 		}
 

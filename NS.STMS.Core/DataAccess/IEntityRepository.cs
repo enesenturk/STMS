@@ -30,6 +30,11 @@ namespace NS.STMS.Core.DataAccess
 
 		TEntity Get(Expression<Func<TEntity, bool>> filter, string[] navProperties = null);
 
+		TEntity GetLast<K>(Expression<Func<TEntity, K>> orderBy,
+			Expression<Func<TEntity, bool>> filter = null,
+			string[] navProperties = null,
+			bool orderByDesc = false);
+
 		K Max<K>(Expression<Func<TEntity, K>> orderBy, Expression<Func<TEntity, bool>> filter = null);
 
 		#endregion

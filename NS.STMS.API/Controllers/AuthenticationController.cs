@@ -105,6 +105,30 @@ namespace NS.STMS.API.Controllers
 			});
 		}
 
+		[HttpPost]
+		[Route("ForgotPassword")]
+		public OkObjectResult ForgotPassword(ForgotPasswordRequestDto requestDto)
+		{
+			_authenticationManager.ForgotPassword(requestDto);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S"
+			});
+		}
+
+		[HttpPut]
+		[Route("ResetPassword")]
+		public OkObjectResult ResetPassword(ResetPasswordRequestDto requestDto)
+		{
+			_authenticationManager.ResetPassword(requestDto);
+
+			return Ok(new BaseResponseModel
+			{
+				Type = "S"
+			});
+		}
+
 		#endregion
 
 		#region Delete
